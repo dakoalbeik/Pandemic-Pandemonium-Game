@@ -1,0 +1,38 @@
+1) Randomize platform positions more thoughtfully.---------------------------------
+2) Delete platforms----------------------------------------------------------------
+3) Slide platforms-----------------------------------------------------------------
+4) Get player in front of new objects----------------------------------------------
+5) Get scrolling to stop when nothing is pressed.----------------------------------
+
+
+
+
+New Goals:
+1) Keep track of new platfroms position and use that to create new ones------------
+2) Make platfroms slide faster and more in sync------------------------------------
+3) Display score in the upper right corner-----------------------------------------
+4) Allow player to go through platforms--------------------------------------------
+5) Make player go in front of all objects------------------------------------------
+6) Add floor in--------------------------------------------------------------------
+
+// these have to be done
+7) Automate the player's jump upon collision---------------------------------------
+8) Create more viruses and items dynamically.
+9) Work on Karen and have her chase.
+10) Display collected items
+11) Move setEnable() to PhysicsDevice::createFixture();
+12) FIX MEMORY LEAK!!!!!!!!!!!!!!!!!!!!!!!-----------------------------------------
+
+// would really like done because its going to drive me nuts
+1) get game to pause when you die so that you can't fly back on screen
+2) put while loop for engine in source inside a loop to see if player wants to play again instead of closing game
+3) put background boxes behind "YOU LOSE!", Highscore, and Score areas to make more prominent
+4) fix score keeping to only be for platforms and not all static objects
+
+
+
+// For final
+1) Add health system for viruses and lives from collecting items
+2) Keep up with sets of items you've created
+3) make masks give some protection against viruses
+4) maybe implement more platforms or things to make you spring up or rockets or something

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Objects>
+	<Enemy>
+		<Object name="Virus">
+			<Component name="Sprite" asset ="Virus" sprite="true"></Component>
+			<Component name="Body" x="400.0f" y="650.0f" angle="0.0f" objectType="Virus">
+				<Physics spinSpeed="3" physicsBodyType="Static" objectShape="Circle" density="5" friction="2"
+						 restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
+				</Physics>
+			</Component>
+			<Component name="Rotate"></Component>
+			<Component name="Slide"></Component>
+		</Object>
+		<Object name="Karen">
+			<Component name="Body" x="150.0f" y="900.0f" angle="0.0f" objectType="Karen">
+				<Physics spinSpeed="3" physicsBodyType="Dynamic" objectShape="Rectangle" density="5" friction="2"
+						 restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
+				</Physics>
+			</Component>
+			<Component name="Chase"></Component>
+			<Component name="Sprite" asset="Karen" sprite="true" isAnimated="true">
+				<ClipInfo spriteID="9" animLag="5" numSprites="27" height="70" width="51" col_num="9" row_num="3"></ClipInfo>
+			</Component>
+		</Object>
+	</Enemy>
+
+	<Platforms>
+		<Object name="Platform">
+			<Component name="Sprite" asset ="Platform" sprite="true"></Component>
+			<Component name="Body" x="390.0f" y="720.0f" angle="0.0f" objectType="Platform">
+				<Physics physicsBodyType ="Static" objectShape="Rectangle" density="5" friction="2"
+						 restitiution="1" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
+				</Physics>
+			</Component>
+			<Component name="Slide"></Component>
+		</Object>
+	</Platforms>
+
+
+
+	<Collectable>
+		<Object name="Papers">
+			<Component name="Sprite" asset ="Papers" sprite="true"></Component>
+			<Component name="Body" x="145.0f" y="423.0f" angle="0.0f" objectType="Item">
+				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
+							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
+				</Physics>
+			</Component>
+			<Component name="Slide"></Component>
+		</Object>
+
+		<Object name="Mask">
+			<Component name="Sprite" asset ="Mask" sprite="true"></Component>
+			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
+				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
+							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
+				</Physics>
+			</Component>
+			<Component name="Slide"></Component>
+		</Object>
+	</Collectable>
+</Objects>

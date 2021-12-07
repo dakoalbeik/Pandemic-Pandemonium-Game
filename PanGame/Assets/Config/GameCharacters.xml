@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Format:
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<Game>
+  <Player name="Player" spritePath="SamuraiPlayerSprite.png" width="1010" height="735">
+    <sprite name="attack_0.png" x="1" y="1" w="200" h="145"/>
+    <sprite name="attack_1.png" x="203" y="1" w="200" h="145"/>
+    <sprite name="attack_2.png" x="405" y="1" w="200" h="145"/>
+    <sprite name="attack_3.png" x="607" y="1" w="200" h="145"/>
+    <sprite name="attack_4.png" x="809" y="1" w="200" h="145"/>
+    <sprite name="attack_5.png" x="1" y="148" w="200" h="145"/>
+    <sprite name="attack_6.png" x="203" y="148" w="200" h="145"/>
+    <sprite name="attack_7.png" x="405" y="148" w="200" h="145"/>
+    <sprite name="idle_0.png" x="607" y="148" w="200" h="145"/>
+    <sprite name="idle_1.png" x="809" y="148" w="200" h="145"/>
+    <sprite name="idle_2.png" x="1" y="295" w="200" h="145"/>
+    <sprite name="idle_3.png" x="203" y="295" w="200" h="145"/>
+    <sprite name="jump_0.png" x="405" y="295" w="200" h="145"/>
+    <sprite name="jump_1.png" x="607" y="295" w="200" h="145"/>
+    <sprite name="jump_2.png" x="809" y="295" w="200" h="145"/>
+    <sprite name="jump_3.png" x="1" y="442" w="200" h="145"/>
+    <sprite name="run_0.png" x="203" y="442" w="200" h="145"/>
+    <sprite name="run_1.png" x="405" y="442" w="200" h="145"/>
+    <sprite name="run_2.png" x="607" y="442" w="200" h="145"/>
+    <sprite name="run_3.png" x="809" y="442" w="200" h="145"/>
+    <sprite name="run_4.png" x="1" y="589" w="200" h="145"/>
+    <sprite name="run_5.png" x="203" y="589" w="200" h="145"/>
+    <sprite name="x_1.png" x="405" y="589" w="200" h="145"/>
+    <sprite name="x_3.png" x="607" y="589" w="200" h="145"/>
+  </Player>
+  <SwordEnemy name="SwordEnemy" spritePath="SamuraiEnemySprite.png" width="760" height="588">
+      <sprite name="2D_SM02_Attack_000.png" x="1" y="1" w="150" h="145"/>
+      <sprite name="2D_SM02_Attack_001.png" x="153" y="1" w="150" h="145"/>
+      <sprite name="2D_SM02_Attack_002.png" x="305" y="1" w="150" h="145"/>
+      <sprite name="2D_SM02_Attack_003.png" x="457" y="1" w="150" h="145"/>
+      <sprite name="2D_SM02_Attack_004.png" x="609" y="1" w="150" h="145"/>
+      <sprite name="2D_SM02_Attack_005.png" x="1" y="148" w="150" h="145"/>
+      <sprite name="2D_SM02_Attack_006.png" x="153" y="148" w="150" h="145"/>
+      <sprite name="2D_SM02_Die_000.png" x="305" y="148" w="150" h="145"/>
+      <sprite name="2D_SM02_Die_002.png" x="457" y="148" w="150" h="145"/>
+      <sprite name="2D_SM02_Die_006.png" x="609" y="148" w="150" h="145"/>
+      <sprite name="2D_SM02_IdleBlink_000.png" x="1" y="295" w="150" h="145"/>
+      <sprite name="2D_SM02_IdleBlink_006.png" x="153" y="295" w="150" h="145"/>
+      <sprite name="2D_SM02_Run_000.png" x="305" y="295" w="150" h="145"/>
+      <sprite name="2D_SM02_Run_001.png" x="457" y="295" w="150" h="145"/>
+      <sprite name="2D_SM02_Run_002.png" x="609" y="295" w="150" h="145"/>
+      <sprite name="2D_SM02_Run_003.png" x="1" y="442" w="150" h="145"/>
+      <sprite name="2D_SM02_Run_004.png" x="153" y="442" w="150" h="145"/>
+      <sprite name="2D_SM02_Run_005.png" x="305" y="442" w="150" h="145"/>
+      <sprite name="2D_SM02_Run_006.png" x="457" y="442" w="150" h="145"/>   
+  </SwordEnemy>
+  <BowEnemy name="BowEnemy" spritePath="BowEnemySprite.png" width="1010" height="441">
+      <sprite name="attack_0.png" x="1" y="1" w="200" h="145"/>
+      <sprite name="attack_1.png" x="203" y="1" w="200" h="145"/>
+      <sprite name="attack_2.png" x="405" y="1" w="200" h="145"/>
+      <sprite name="attack_3.png" x="607" y="1" w="200" h="145"/>
+      <sprite name="idle_0.png" x="809" y="1" w="200" h="145"/>
+      <sprite name="idle_1.png" x="1" y="148" w="200" h="145"/>
+      <sprite name="idle_2.png" x="203" y="148" w="200" h="145"/>
+      <sprite name="idle_3.png" x="405" y="148" w="200" h="145"/>
+      <sprite name="run_1.png" x="607" y="148" w="200" h="145"/>
+      <sprite name="run_2.png" x="809" y="148" w="200" h="145"/>
+      <sprite name="run_3.png" x="1" y="295" w="200" h="145"/>
+      <sprite name="run_4.png" x="203" y="295" w="200" h="145"/>
+      <sprite name="run_5.png" x="405" y="295" w="200" h="145"/>
+      <sprite name="x_1.png" x="607" y="295" w="200" h="145"/>
+  </BowEnemy>
+</Game>
