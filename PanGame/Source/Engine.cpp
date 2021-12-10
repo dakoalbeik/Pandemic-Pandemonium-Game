@@ -19,7 +19,7 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 	}
 
 	tinyxml2::XMLElement* libraryRoot = libraryDoc.FirstChildElement("Library");  //Root
-	tinyxml2::XMLElement* libraryElement = libraryRoot->FirstChildElement("AssetLibrary"); // Asset Library
+	tinyxml2::XMLElement* assetLibraryElement = libraryRoot->FirstChildElement("AssetLibrary"); // Asset Library
 
 	//Configuring Game
 	tinyxml2::XMLDocument levelDoc;
@@ -44,7 +44,7 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 
 	//Construction Asset Library
 	assetLibrary = (std::make_unique<Library>());
-	tinyxml2::XMLElement* asset = libraryElement->FirstChildElement("Asset");
+	tinyxml2::XMLElement* asset = assetLibraryElement->FirstChildElement("Asset");
 
 	//checking if texture needs to be clipped
 	bool isAnimated{ false };
@@ -59,6 +59,26 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 		assetLibrary->addArtAsset(gDevice.get(), asset->Attribute("name"), asset->Attribute("spritepath"), isAnimated, libraryClipInfo);
 		asset = asset->NextSiblingElement("Asset");
 	}
+
+
+	// initialize soundController
+	soundController = std::make_unique<SoundController>();
+	if (!soundController->initialize(22050, MIX_DEFAULT_FORMAT, 2, 4096)) {
+		printf("SDL Mixer could not initialize! SDL_Error: %s\n", Mix_GetError());
+		exit(1);
+	}
+
+	// get the sound library element
+	tinyxml2::XMLElement* soundLibraryElement = assetLibraryElement->NextSiblingElement("SoundLibrary");
+	asset = soundLibraryElement->FirstChildElement("Asset");
+	while (asset) {
+		if (!soundController->addSoundAsset(asset->Attribute("name"), asset->Attribute("soundPath"))) {
+			printf("Failed to create sound asset in Engine\n");
+			exit(1);
+		}
+		asset = asset->NextSiblingElement("Asset");
+	}
+
 
 	gameElement = gameElement->NextSiblingElement(); //FPS
 	FPS = std::stoi(gameElement->GetText());

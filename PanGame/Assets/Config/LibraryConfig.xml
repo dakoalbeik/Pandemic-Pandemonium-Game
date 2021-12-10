@@ -10,4 +10,7 @@
 		<Asset name="Karen" spritepath=".\Assets\Images\Karen.png" isAnimated="true" height="69" width="46"></Asset>
 		<Asset name="Background" spritepath=".\Assets\Images\Hospital.png" isAnimated="false"></Asset>
 	</AssetLibrary>
+	<SoundLibrary>
+		<Asset name="Bounce" soundPath=".\Assets\Sounds\Bounce.ogg"></Asset>
+	</SoundLibrary>
 </Library>

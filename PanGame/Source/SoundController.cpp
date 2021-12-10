@@ -26,14 +26,15 @@ bool SoundController::initialize(int frequencey, Uint16 format, int channels, in
 	}
 }
 
-bool SoundController::addSoundAsset(Sound sound, std::string filePath) {
+bool SoundController::addSoundAsset(std::string name, std::string filePath) {
 	//Mix_Chunk* tempChunk = Mix_LoadWAV(filePath.c_str());
-	soundsLibrary.emplace(sound, Mix_LoadWAV(filePath.c_str()));
-	if (soundsLibrary[sound]) {
+	Sound newSound = stringToSoundEnum(name);
+	soundsLibrary.emplace(newSound, Mix_LoadWAV(filePath.c_str()));
+	if (soundsLibrary[newSound]) {
 		return true;
 	}
 	else {
-		auto soundItr = soundsLibrary.find(sound);
+		auto soundItr = soundsLibrary.find(newSound);
 		soundsLibrary.erase(soundItr);
 		return false;
 	}
@@ -58,4 +59,17 @@ void SoundController::playBackgroundMusic(int loop) {
 
 void SoundController::playSound(Sound sound, int loop, int channelID) {
 	Mix_PlayChannel(channelID, soundsLibrary[sound], loop);
+}
+
+Sound SoundController::stringToSoundEnum(std::string name) {
+	if (name == "Bounce") {
+		return Sound::BOUNCE;
+	}
+	else if (name == "Karen") {
+		return Sound::KAREN;
+	}
+	else {
+		printf("Failed to translate string to Enum");
+		exit(1);
+	}
 }

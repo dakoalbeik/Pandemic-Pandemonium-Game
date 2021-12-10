@@ -12,6 +12,7 @@
 #include "InputDevice.h"
 #include "PhysicsDevice.h"
 #include "StaticHandler.h"
+#include "SoundController.h"
 #include "Timer.h"
 
 class Engine {
@@ -32,6 +33,7 @@ private:
 	std::unique_ptr<InputDevice> iDevice{ nullptr };
 	std::unique_ptr<PhysicsDevice> pDevice{ nullptr };
 	std::unique_ptr<StaticHandler> staticHandler{ nullptr };
+	std::unique_ptr<SoundController> soundController{ nullptr };
 
 	//Library
 	std::unique_ptr<Library> assetLibrary{ nullptr };
