@@ -170,6 +170,7 @@ xcopy "$(ProjectDir)Assets" "$(ProjectDir)Game\Assets" /E /I /F /Y</Command>
     <ClCompile Include="Source\RandomPosition.cpp" />
     <ClCompile Include="Source\RotateComponent.cpp" />
     <ClCompile Include="Source\SlideComponent.cpp" />
+    <ClCompile Include="Source\SoundController.cpp" />
     <ClCompile Include="Source\Source.cpp" />
     <ClCompile Include="Source\SpriteComponent.cpp" />
     <ClCompile Include="Source\StaticHandler.cpp" />
@@ -199,6 +200,7 @@ xcopy "$(ProjectDir)Assets" "$(ProjectDir)Game\Assets" /E /I /F /Y</Command>
     <ClInclude Include="Source\RandomPosition.h" />
     <ClInclude Include="Source\RotateComponent.h" />
     <ClInclude Include="Source\SlideComponent.h" />
+    <ClInclude Include="Source\SoundController.h" />
     <ClInclude Include="Source\SpriteComponent.h" />
     <ClInclude Include="Source\StaticHandler.h" />
     <ClInclude Include="Source\Texture.h" />
