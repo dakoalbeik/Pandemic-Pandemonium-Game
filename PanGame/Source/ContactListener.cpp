@@ -21,10 +21,12 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 	if (objectTypeA == ObjectType::Player &&
 		(objectTypeB == ObjectType::Platform || objectTypeB == ObjectType::Floor)) {
 		objectA->GetComponent<MoveComponent>()->Jump();
+		soundController->playSound(Sound::BOUNCE, 0);
 	}
 	else if (objectTypeB == ObjectType::Player &&
 		(objectTypeA == ObjectType::Platform || objectTypeA == ObjectType::Floor)) {
 		objectB->GetComponent<MoveComponent>()->Jump();
+		soundController->playSound(Sound::BOUNCE, 0);
 	}
 
 
