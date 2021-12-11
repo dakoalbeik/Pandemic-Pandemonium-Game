@@ -8,12 +8,12 @@
 PhysicsDevice::PhysicsDevice(Vector2D gravity) :gravity(RW2PW(gravity.x), RW2PW(+gravity.y)) {}
 
 //Creates a new world on initialization
-bool PhysicsDevice::initialize() {
+bool PhysicsDevice::initialize(SoundController* soundController) {
 
 	world = new b2World(gravity);
 	if (world == nullptr) return false;
 
-	contactListener = std::make_unique<ContactListener>();
+	contactListener = std::make_unique<ContactListener>(soundController);
 	world->SetContactListener(contactListener.get());
 
 	return true;

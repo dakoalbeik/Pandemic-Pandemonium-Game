@@ -91,7 +91,7 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 	// Initializing the Physics Device
 	Vector2D gravity = { 0.0f,1000.0f };
 	pDevice = std::make_unique<PhysicsDevice>(gravity);
-	if (!pDevice->initialize()) {
+	if (!pDevice->initialize(soundController.get())) {
 		printf("Failed to initialize physics device");
 		exit(1);
 	}

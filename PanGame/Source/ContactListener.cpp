@@ -38,3 +38,13 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 		contact->SetEnabled(false);
 	}
 }
+
+void ContactListener::BeginContact(b2Contact* contact) {
+}
+
+void ContactListener::EndContact(b2Contact* contact) {
+}
+
+void ContactListener::PostSolve(b2Contact* contact, const b2ContactImpulse* impulse) {
+
+}

@@ -4,6 +4,7 @@
 #include "box2d.h"
 #include "Initializers.h"
 #include "ContactListener.h"
+#include "SoundController.h"
 
 #include <memory>
 
@@ -13,7 +14,7 @@ class PhysicsDevice
 {
 public:
 	PhysicsDevice(Vector2D gravity);
-	bool initialize();
+	bool initialize(SoundController* soundController);
 	bool update(float dt);
 
 	bool createFixture(GameObject* object, PhysicsPresets physics, GamePosition position);
@@ -44,7 +45,7 @@ public:
 
 
 	//public just for creating borders!
-	b2World* world;
+	b2World* world{ nullptr };
 private:
 
 	const b2Vec2 gravity;
