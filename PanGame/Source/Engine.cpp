@@ -172,7 +172,12 @@ void Engine::reset()
 bool Engine::run()
 {
 	// if player is dead, then write high score to file
-	if (isDead) { writeHighScore(); }
+	if (isDead && !gameOver) {
+		writeHighScore();
+		soundController->pauseMusic();
+		soundController->playSound(Sound::GAME_OVER, 0);
+		gameOver = true;
+	}
 
 	// if window is closed, write high score to file
 	if (iDevice->GetEvent(InputDevice::gameEvent::QUIT)) {

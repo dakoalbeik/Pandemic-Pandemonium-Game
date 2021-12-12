@@ -4,7 +4,7 @@
 #include <string>
 
 
-enum class Sound { BOUNCE, KAREN, BACKGROUND_MUSIC };
+enum class Sound { BOUNCE, KAREN, BACKGROUND_MUSIC, GAME_OVER };
 class SoundController {
 public:
 	SoundController() {};

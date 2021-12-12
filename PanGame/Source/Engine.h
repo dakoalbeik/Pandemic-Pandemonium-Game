@@ -45,6 +45,8 @@ private:
 
 	Uint32 FPS{ 0 };
 
+	bool gameOver{ false };
+
 };
 
 #endif // !ENGINE_H

@@ -92,6 +92,9 @@ Sound SoundController::stringToSoundEnum(std::string name) {
 	else if (name == "BackgroundMusic") {
 		return Sound::BACKGROUND_MUSIC;
 	}
+	else if (name == "GameOver") {
+		return Sound::GAME_OVER;
+	}
 	else {
 		printf("Failed to translate string to Enum");
 		exit(1);

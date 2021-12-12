@@ -12,6 +12,8 @@
 	</AssetLibrary>
 	<SoundLibrary>
 		<Asset name="Bounce" soundPath=".\Assets\Sounds\Bounce.ogg"></Asset>
+		<Asset name="Karen" soundPath=".\Assets\Sounds\Karen.wav"></Asset>
+		<Asset name="GameOver" soundPath=".\Assets\Sounds\GameOver.wav"></Asset>
 	</SoundLibrary>
 	<MusicLibrary>
 		<Asset name="BackgroundMusic" soundPath=".\Assets\Sounds\BackgroundMusic.mp3"></Asset>

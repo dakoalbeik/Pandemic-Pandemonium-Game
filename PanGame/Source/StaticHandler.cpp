@@ -159,6 +159,7 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 		killKaren = true;
 		createKaren = false;
 		soundController->pauseMusic();
+		soundController->playSound(Sound::KAREN, 1);
 	}
 
 	// if last platform created is on screen, make some more
