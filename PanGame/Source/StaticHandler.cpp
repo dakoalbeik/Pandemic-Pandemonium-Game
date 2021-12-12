@@ -2,6 +2,7 @@
 #include "ObjectFactory.h"
 #include "PhysicsDevice.h"
 #include "RandomPosition.h"
+#include "SoundController.h"
 #include <string>
 #include <random>
 
@@ -52,12 +53,12 @@ Uint32 GetKarenOffScreen(Uint32 interval, void* param) {
 		}
 	}
 
-
 	return 0;
 }
 
-StaticHandler::StaticHandler(ObjectFactory* factory, std::shared_ptr<BodyComponent> playerBodyComponent, std::shared_ptr<UserInputComponent> playerInputComponent) :
-	playerBodyComponent(playerBodyComponent), playerInputComponent(playerInputComponent), factory(factory)
+StaticHandler::StaticHandler(ObjectFactory* factory, std::shared_ptr<BodyComponent> playerBodyComponent,
+	std::shared_ptr<UserInputComponent> playerInputComponent, SoundController* soundController) :
+	playerBodyComponent(playerBodyComponent), playerInputComponent(playerInputComponent), factory(factory), soundController(soundController)
 {
 	//Configuring Future Assets
 	if (futureDoc.LoadFile("./Assets/Config/FutureObjects.xml") != tinyxml2::XML_SUCCESS)
@@ -152,6 +153,9 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 		newObjects->back()->GetComponent<BodyComponent>()->getPDevice()->setFixedRotation(newObjects->back().get(), true);
 		killKaren = true;
 		createKaren = false;
+		if (Mix_PlayingMusic()) {
+			soundController->pauseMusic();
+		}
 	}
 
 	// if last platform created is on screen, make some more
@@ -172,8 +176,7 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 			tempBody->getPDevice()->setEnabled(newObjects->back().get(), false);
 		}
 
-		// store the last platform's body position
-		// to decide when to create more platfroms
+		// store the last platform's body position to decide when to create more platfroms
 		lastPlatformBody = newObjects->back()->GetComponent<BodyComponent>();
 
 

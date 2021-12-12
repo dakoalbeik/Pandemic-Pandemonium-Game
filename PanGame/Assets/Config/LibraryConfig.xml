@@ -13,4 +13,7 @@
 	<SoundLibrary>
 		<Asset name="Bounce" soundPath=".\Assets\Sounds\Bounce.ogg"></Asset>
 	</SoundLibrary>
+	<MusicLibrary>
+		<Asset name="BackgroundMusic" soundPath=".\Assets\Sounds\BackgroundMusic.mp3"></Asset>
+	</MusicLibrary>
 </Library>

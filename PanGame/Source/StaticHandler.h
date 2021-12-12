@@ -7,7 +7,8 @@
 class StaticHandler
 {
 public:
-	StaticHandler(ObjectFactory* factory, std::shared_ptr<BodyComponent> playerBodyComponent, std::shared_ptr<UserInputComponent> playerInputComponent);
+	StaticHandler(ObjectFactory* factory, std::shared_ptr<BodyComponent> playerBodyComponent,
+		std::shared_ptr<UserInputComponent> playerInputComponent, SoundController* soundController);
 	~StaticHandler();
 
 	// gets called by the engine. Adds and removes platforms
@@ -18,6 +19,8 @@ private:
 	std::shared_ptr<UserInputComponent> playerInputComponent{ nullptr };
 	std::unique_ptr<RandomPosition> randomHandler{ nullptr };
 	std::shared_ptr<BodyComponent> lastPlatformBody{ nullptr };
+
+	SoundController* soundController{ nullptr };
 
 	ObjectFactory* factory{ nullptr };
 	tinyxml2::XMLElement* platformElement{ nullptr };

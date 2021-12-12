@@ -21,6 +21,7 @@ class ContactListener;
 class PhysicsDevice;
 class StaticHandler;
 class RandomPosition;
+class SoundController;
 struct ObjectFactoryPresets;
 struct SpritePresets;
 struct BodyPresets;

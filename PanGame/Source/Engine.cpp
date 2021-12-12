@@ -79,6 +79,17 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 		asset = asset->NextSiblingElement("Asset");
 	}
 
+	// get musicLibraryElement
+	tinyxml2::XMLElement* musicLibraryElement = assetLibraryElement->NextSiblingElement("MusicLibrary");
+	asset = musicLibraryElement->FirstChildElement("Asset");
+	while (asset) {
+		if (!soundController->addMusicAsset(asset->Attribute("name"), asset->Attribute("soundPath"))) {
+			printf("Failed to create music asset in Engine\n");
+			exit(1);
+		}
+		asset = asset->NextSiblingElement("Asset");
+	}
+
 
 	gameElement = gameElement->NextSiblingElement(); //FPS
 	FPS = std::stoi(gameElement->GetText());
@@ -139,9 +150,9 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 	}
 
 	// create StaticHandler for dynamic platform creation and deletion
-	staticHandler = std::make_unique<StaticHandler>(factory.get(), playerBodyComponent, playerInputComponent);
+	staticHandler = std::make_unique<StaticHandler>(factory.get(), playerBodyComponent, playerInputComponent, soundController.get());
 
-
+	soundController->playMusic(Sound::BACKGROUND_MUSIC);
 }
 
 Engine::~Engine()
