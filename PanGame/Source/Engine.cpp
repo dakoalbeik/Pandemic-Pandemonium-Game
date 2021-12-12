@@ -144,6 +144,7 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 		printf("Player body not found!");
 		exit(1);
 	}
+
 	if (!playerInputComponent) {
 		printf("Player input not found!");
 		exit(1);

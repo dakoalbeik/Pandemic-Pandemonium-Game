@@ -8,22 +8,67 @@
 
 
 //struct so we can pass multiple things into sdl timer
-struct KarenCallBackParam {
-	std::vector<std::shared_ptr<GameObject>>& newObjects;
-	bool& createKaren;
-	SoundController* sound{ nullptr };
-	KarenCallBackParam(std::vector<std::shared_ptr<GameObject>>& vec, bool& makeKaren, SoundController* sound) :
-		newObjects(vec), createKaren(makeKaren), sound(sound) {}
-};
+//struct KarenCallBackParam {
+//	std::vector<std::shared_ptr<GameObject>>& newObjects;
+//	bool& createKaren;
+//	SoundController* sound{ nullptr };
+//	KarenCallBackParam(std::vector<std::shared_ptr<GameObject>>& vec, bool& makeKaren, SoundController* sound) :
+//		newObjects(vec), createKaren(makeKaren), sound(sound) {}
+//};
 
 // callback for deleting karen from the game vector
-Uint32 RemoveKarenCallback(Uint32 interval, void* param) {
+//Uint32 RemoveKarenCallback(Uint32 interval, void* param) {
+//
+//	//cast back to type we want
+//	KarenCallBackParam* parameters = static_cast<KarenCallBackParam*>(param);
+//
+//	parameters->newObjects.erase(std::remove_if(
+//		parameters->newObjects.begin(), parameters->newObjects.end(), //searches beginning of vector to end
+//		[](std::shared_ptr<GameObject> object) {
+//
+//			bool shouldDelete = object->GetComponent<BodyComponent>()->getObjectType() == ObjectType::Karen;
+//
+//			// if object is has a slide component and is below screen, then delete the body and object
+//			if (shouldDelete) { object->GetComponent<BodyComponent>()->getPDevice()->removeObject(object.get()); }
+//			return (shouldDelete);
+//		}),
+//		parameters->newObjects.end());
+//
+//	//setting flag back so she can be created again
+//	parameters->createKaren = true;
+//
+//	return 0;
+//}
 
-	//cast back to type we want
-	KarenCallBackParam* parameters = static_cast<KarenCallBackParam*>(param);
+// call back for stoping karen's chase behavior and changing velocity
+//Uint32 GetKarenOffScreen(Uint32 interval, void* param) {
+//
+//	//cast back to type we want
+//	KarenCallBackParam* parameters = static_cast<KarenCallBackParam*>(param);
+//
+//	for (auto& object : parameters->newObjects) {
+//		if (auto karenBody = object->GetComponent<BodyComponent>(); karenBody->getObjectType() == ObjectType::Karen) {
+//			// disable chase behavior
+//			object->GetComponent<ChaseComponent>()->disabled = true;
+//			// increase karen's velocity
+//			karenBody->getPDevice()->setLinearVelocity(object.get(), { 400, 50 });
+//			// delete karen after 3 seconds (time in ms, callback function name, parameter being passed)
+//			SDL_TimerID timerID = SDL_AddTimer(3000, RemoveKarenCallback, param);
+//		}
+//	}
+//
+//	//continue playing background music that was paused
+//	if (!isDead) {
+//		parameters->sound->resumeMusic(Sound::BACKGROUND_MUSIC);
+//	}
+//
+//	return 0;
+//}
 
-	parameters->newObjects.erase(std::remove_if(
-		parameters->newObjects.begin(), parameters->newObjects.end(), //searches beginning of vector to end
+void StaticHandler::removeKaren(std::vector<std::shared_ptr<GameObject>>& newObjects)
+{
+	newObjects.erase(std::remove_if(
+		newObjects.begin(), newObjects.end(), //searches beginning of vector to end
 		[](std::shared_ptr<GameObject> object) {
 
 			bool shouldDelete = object->GetComponent<BodyComponent>()->getObjectType() == ObjectType::Karen;
@@ -32,37 +77,29 @@ Uint32 RemoveKarenCallback(Uint32 interval, void* param) {
 			if (shouldDelete) { object->GetComponent<BodyComponent>()->getPDevice()->removeObject(object.get()); }
 			return (shouldDelete);
 		}),
-		parameters->newObjects.end());
+		newObjects.end());
 
 	//setting flag back so she can be created again
-	parameters->createKaren = true;
-
-	return 0;
+	createKaren = true;
+	karenBody->dead = false;
 }
 
-// call back for stoping karen's chase behavior and changing velocity
-Uint32 GetKarenOffScreen(Uint32 interval, void* param) {
-
-	//cast back to type we want
-	KarenCallBackParam* parameters = static_cast<KarenCallBackParam*>(param);
-
-	for (auto& object : parameters->newObjects) {
-		if (auto karenBody = object->GetComponent<BodyComponent>(); karenBody->getObjectType() == ObjectType::Karen) {
+void StaticHandler::getKarenOffScreen(std::vector<std::shared_ptr<GameObject>>& newObjects)
+{
+	for (auto& object : newObjects) {
+		if (auto karenBodyComponent = object->GetComponent<BodyComponent>(); karenBodyComponent->getObjectType() == ObjectType::Karen) {
 			// disable chase behavior
 			object->GetComponent<ChaseComponent>()->disabled = true;
 			// increase karen's velocity
-			karenBody->getPDevice()->setLinearVelocity(object.get(), { 400, 50 });
-			// delete karen after 3 seconds (time in ms, callback function name, parameter being passed)
-			SDL_TimerID timerID = SDL_AddTimer(3000, RemoveKarenCallback, param);
+			karenBodyComponent->getPDevice()->setLinearVelocity(object.get(), { 400, 50 });
+			karenBodyComponent->dead = true;
 		}
 	}
 
 	//continue playing background music that was paused
 	if (!isDead) {
-		parameters->sound->resumeMusic(Sound::BACKGROUND_MUSIC);
+		soundController->resumeMusic(Sound::BACKGROUND_MUSIC);
 	}
-
-	return 0;
 }
 
 StaticHandler::StaticHandler(ObjectFactory* factory, std::shared_ptr<BodyComponent> playerBodyComponent,
@@ -122,14 +159,35 @@ StaticHandler::~StaticHandler() {
 
 std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::update(std::vector<std::shared_ptr<GameObject>>& gameObjects) {
 
-
-
 	// kill karen by invoking a callback after 8 seconds
-	if (killKaren) {
-		KarenCallBackParam* paramObject = new KarenCallBackParam(gameObjects, createKaren, soundController);
-		SDL_TimerID timerID = SDL_AddTimer(8000, GetKarenOffScreen, static_cast<void*>(paramObject)); //cast to void*
-		killKaren = false;  //reset flag
+	//if (killKaren) {
+	//	KarenCallBackParam* paramObject = new KarenCallBackParam(gameObjects, createKaren, soundController);
+	//	SDL_TimerID timerID = SDL_AddTimer(8000, GetKarenOffScreen, static_cast<void*>(paramObject)); //cast to void*
+	//	killKaren = false;  //reset flag
+	//}
+
+
+	tm karenTime;
+
+	time_t createNow{ mktime(&karenInitial) };
+
+	localtime_s(&karenTime, &createNow);
+
+	// difftime returns a double from the difference between (ending time, starting time)
+	auto diffTime = (int)difftime(karenTime.tm_sec, start.tm_sec);
+
+	//stays on screen for 8 seconds and then runs off
+	if (killKaren && (diffTime + 1) % 15 == 8) {
+
+		getKarenOffScreen(gameObjects);
+
+		killKaren = false;
 	}
+	// 8 + 3 seconds is 11 secs to delete karen
+	if (karenBody && (diffTime + 1) % 15 == 3 && karenBody->dead) {
+		removeKaren(gameObjects);
+	}
+
 
 
 	// decide to delete
@@ -180,10 +238,10 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 
 	// localtime_s is more secure version on locatime
 	// takes the tm pointer to store value in, and the time_t pointer to convert from
-	localtime_s(&karenTime, &createNow);
+	localtime_s(&karenInitial, &createNow);
 
-	// difftime returns a double from the difference between (ending time, starting time)
-	auto diffTime = (int)difftime(karenTime.tm_sec, start.tm_sec);
+	// difftime returns a double from the difference between (ending_time, starting time)
+	auto diffTime = (int)difftime(karenInitial.tm_sec, start.tm_sec);
 
 	// create Karen if it has been 15 seconds
 	if ((diffTime + 1) % 15 == 0 && !killKaren && createKaren && !isDead) {
@@ -197,8 +255,9 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 		createKaren = false;
 
 		soundController->playSound(Sound::KAREN, 1);
-	}
 
+		karenBody = newObjects->back()->GetComponent<BodyComponent>();
+	}
 
 
 

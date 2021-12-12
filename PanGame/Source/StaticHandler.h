@@ -4,6 +4,7 @@
 #include <memory>
 #include <vector>
 #include <ctime>
+#include <sstream>
 
 
 class StaticHandler
@@ -19,13 +20,14 @@ public:
 	//timer for karens arrival and departure
 	time_t now{ time(NULL) };
 	// tm is a time struct with several members
-	tm karenTime;
+	tm karenInitial;
 	tm start;
 private:
 	std::shared_ptr<BodyComponent> playerBodyComponent{ nullptr };
 	std::shared_ptr<UserInputComponent> playerInputComponent{ nullptr };
 	std::unique_ptr<RandomPosition> randomHandler{ nullptr };
 	std::shared_ptr<BodyComponent> lastPlatformBody{ nullptr };
+	std::shared_ptr<BodyComponent> karenBody{ nullptr };
 
 	SoundController* soundController{ nullptr };
 
@@ -38,6 +40,9 @@ private:
 	void deleteObjects(std::vector<std::shared_ptr<GameObject>>& gameObjects);
 	void physicsEnabled(std::vector<std::shared_ptr<GameObject>>& gameObjects);
 	void slideObjects(std::vector<std::shared_ptr<GameObject>>& gameObjects);
+
+	void getKarenOffScreen(std::vector<std::shared_ptr<GameObject>>& newObjects);
+	void removeKaren(std::vector<std::shared_ptr<GameObject>>& newObjects);
 
 	//flags for creation or killing
 	bool firstRound{ true };
