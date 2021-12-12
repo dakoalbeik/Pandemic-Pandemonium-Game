@@ -182,6 +182,7 @@ xcopy "$(ProjectDir)Assets" "$(ProjectDir)Game\Assets" /E /I /F /Y</Command>
     <ClCompile Include="Third Party\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Source\BodyComponent.h" />
     <ClInclude Include="Source\ChaseComponent.h" />
     <ClInclude Include="Source\Component.h" />
@@ -218,6 +219,12 @@ xcopy "$(ProjectDir)Assets" "$(ProjectDir)Game\Assets" /E /I /F /Y</Command>
     <Xml Include="Assets\Config\FutureObjects.xml" />
     <Xml Include="Assets\Config\LevelConfig.xml" />
     <Xml Include="Assets\Config\LibraryConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Images\Hospital_Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PanGame.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
