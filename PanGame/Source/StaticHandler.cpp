@@ -10,7 +10,9 @@
 struct KarenCallBackParam {
 	std::vector<std::shared_ptr<GameObject>>& newObjects;
 	bool& createKaren;
-	KarenCallBackParam(std::vector<std::shared_ptr<GameObject>>& vec, bool& makeKaren) : newObjects(vec), createKaren(makeKaren) {}
+	SoundController* sound{ nullptr };
+	KarenCallBackParam(std::vector<std::shared_ptr<GameObject>>& vec, bool& makeKaren, SoundController* sound) :
+		newObjects(vec), createKaren(makeKaren), sound(sound) {}
 };
 
 // callback for deleting karen from the game vector
@@ -52,6 +54,9 @@ Uint32 GetKarenOffScreen(Uint32 interval, void* param) {
 			SDL_TimerID timerID = SDL_AddTimer(3000, RemoveKarenCallback, param);
 		}
 	}
+
+	//continue playing background music that was paused
+	parameters->sound->resumeMusic();
 
 	return 0;
 }
@@ -111,7 +116,7 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::update(
 
 	// kill karen by invoking a callback after 5 seconds
 	if (killKaren) {
-		KarenCallBackParam* paramObject = new KarenCallBackParam(gameObjects, createKaren);
+		KarenCallBackParam* paramObject = new KarenCallBackParam(gameObjects, createKaren, soundController);
 		SDL_TimerID timerID = SDL_AddTimer(5000, GetKarenOffScreen, static_cast<void*>(paramObject)); //cast to void*
 		killKaren = false;  //reset flag
 	}
@@ -153,9 +158,7 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 		newObjects->back()->GetComponent<BodyComponent>()->getPDevice()->setFixedRotation(newObjects->back().get(), true);
 		killKaren = true;
 		createKaren = false;
-		if (Mix_PlayingMusic()) {
-			soundController->pauseMusic();
-		}
+		soundController->pauseMusic();
 	}
 
 	// if last platform created is on screen, make some more

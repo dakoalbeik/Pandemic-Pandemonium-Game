@@ -15,7 +15,9 @@ public:
 	void playMusic(Sound sound, int loop = -1);
 	void playSound(Sound sound, int loop, int channelID = -1);
 	void pauseMusic();
+	void resumeMusic();
 private:
+	bool isPlayingMusic();
 	Sound stringToSoundEnum(std::string name);
 	std::map<Sound, Mix_Chunk*> soundsLibrary;
 	std::map<Sound, Mix_Music*> musicLibrary;

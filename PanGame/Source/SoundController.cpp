@@ -67,7 +67,19 @@ void SoundController::playSound(Sound sound, int loop, int channelID) {
 }
 
 void SoundController::pauseMusic() {
-	Mix_PauseMusic();
+	if (Mix_PlayingMusic) {
+		Mix_PauseMusic();
+	}
+}
+
+void SoundController::resumeMusic() {
+	if (Mix_PausedMusic) {
+		Mix_ResumeMusic();
+	}
+}
+
+bool SoundController::isPlayingMusic() {
+	return Mix_PlayingMusic();
 }
 
 Sound SoundController::stringToSoundEnum(std::string name) {
