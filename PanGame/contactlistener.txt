@@ -1,0 +1,67 @@
+#include "ContactListener.h"
+
+void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
+{
+
+
+	//Grab the two Physics Bodies involved in the Contact
+	b2Body* bodyA = contact->GetFixtureA()->GetBody();
+	b2Body* bodyB = contact->GetFixtureB()->GetBody();
+
+	// find the objects
+	GameObject* objectA = (GameObject*)bodyA->GetUserData().pointer;
+	GameObject* objectB = (GameObject*)bodyB->GetUserData().pointer;
+
+
+	// get body components
+	std::shared_ptr<BodyComponent> objectBodyA = objectA->GetComponent<BodyComponent>();
+	std::shared_ptr<BodyComponent> objectBodyB = objectB->GetComponent<BodyComponent>();
+
+	// get the objects type
+	ObjectType objectTypeA = objectBodyA->getObjectType();
+	ObjectType objectTypeB = objectBodyB->getObjectType();
+
+
+	// make player jump upon contact with platforms
+	if (objectTypeA == ObjectType::Player &&
+		(objectTypeB == ObjectType::Platform || objectTypeB == ObjectType::Floor)) {
+
+		//objectA->GetComponent<MoveComponent>()->Jump();
+
+		// if object B (platfrom) is above player ignore collision
+		if (objectBodyB->getPosition().y <= objectBodyA->getPosition().y +
+			objectBodyA->getOwner()->GetComponent<SpriteComponent>()->getTexture()->getHeight()) {
+			// if platform is above player
+			contact->SetEnabled(false);
+		}
+
+
+
+	}
+	else if (objectTypeB == ObjectType::Player &&
+		(objectTypeA == ObjectType::Platform || objectTypeA == ObjectType::Floor)) {
+
+		//objectB->GetComponent<MoveComponent>()->Jump();
+
+		// if object A (platfrom) is above player ignore collision
+		if (objectBodyA->getPosition().y <= objectBodyB->getPosition().y +
+			objectBodyB->getOwner()->GetComponent<SpriteComponent>()->getTexture()->getHeight()) {
+			// if platform is above player
+			contact->SetEnabled(false);
+		}
+
+	}
+
+
+
+	std::cout << "Pre Contact!" << std::endl;
+	//// ignore collsion for Karen with platforms
+	//else if (objectTypeA == ObjectType::Karen &&
+	//	(objectTypeB == ObjectType::Platform || objectTypeB == ObjectType::Item)) {
+	//	contact->SetEnabled(false);
+	//}
+	//else if (objectTypeB == ObjectType::Karen &&
+	//	(objectTypeA == ObjectType::Platform || objectTypeA == ObjectType::Item)) {
+	//	contact->SetEnabled(false);
+	//}
+}

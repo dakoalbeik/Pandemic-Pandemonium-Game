@@ -175,10 +175,9 @@ bool Engine::run()
 	// if player is dead, then write high score to file
 	if (isDead && !gameOver) {
 		writeHighScore();
-		soundController->haltMusic();
-		soundController->haltSound();
-		gameOver = true;
+		soundController->pauseMusic();
 		soundController->playSound(Sound::GAME_OVER, 0);
+		gameOver = true;
 	}
 
 	// if window is closed, write high score to file

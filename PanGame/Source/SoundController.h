@@ -17,7 +17,6 @@ public:
 	void pauseMusic();
 	void resumeMusic(Sound sound);
 	void haltMusic();
-	void haltSound();
 private:
 	Sound stringToSoundEnum(std::string name);
 	std::map<Sound, Mix_Chunk*> soundsLibrary;
