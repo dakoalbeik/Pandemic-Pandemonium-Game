@@ -4,7 +4,7 @@
 #include <string>
 
 
-enum class Sound { BOUNCE, KAREN, BACKGROUND_MUSIC, GAME_OVER };
+enum class Sound { BOUNCE, KAREN, BACKGROUND_MUSIC, GAME_OVER, BOSS };
 class SoundController {
 public:
 	SoundController() {};
@@ -15,9 +15,9 @@ public:
 	void playMusic(Sound sound, int loop = -1);
 	void playSound(Sound sound, int loop, int channelID = -1);
 	void pauseMusic();
-	void resumeMusic();
+	void resumeMusic(Sound sound);
+	void haltMusic();
 private:
-	bool isPlayingMusic();
 	Sound stringToSoundEnum(std::string name);
 	std::map<Sound, Mix_Chunk*> soundsLibrary;
 	std::map<Sound, Mix_Music*> musicLibrary;

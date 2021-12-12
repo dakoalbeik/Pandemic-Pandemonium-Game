@@ -67,19 +67,23 @@ void SoundController::playSound(Sound sound, int loop, int channelID) {
 }
 
 void SoundController::pauseMusic() {
-	if (Mix_PlayingMusic) {
-		Mix_PauseMusic();
+
+	// only if music is playing
+	if (Mix_PlayingMusic()) {
+		//fade out music over 1 second and then halt the music
+		Mix_FadeOutMusic(1000);
 	}
 }
 
-void SoundController::resumeMusic() {
-	if (Mix_PausedMusic) {
-		Mix_ResumeMusic();
-	}
+void SoundController::resumeMusic(Sound sound) {
+
+	//fade in music over 1 second and then loop like playMusic
+	Mix_FadeInMusic(musicLibrary[sound], -1, 1000);
 }
 
-bool SoundController::isPlayingMusic() {
-	return Mix_PlayingMusic();
+void SoundController::haltMusic()
+{
+	Mix_HaltMusic();
 }
 
 Sound SoundController::stringToSoundEnum(std::string name) {
@@ -94,6 +98,9 @@ Sound SoundController::stringToSoundEnum(std::string name) {
 	}
 	else if (name == "GameOver") {
 		return Sound::GAME_OVER;
+	}
+	else if (name == "Boss") {
+		return Sound::BOSS;
 	}
 	else {
 		printf("Failed to translate string to Enum");

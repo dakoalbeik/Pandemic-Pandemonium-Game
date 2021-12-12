@@ -16,11 +16,12 @@ BodyComponent::~BodyComponent()
 }
 
 void BodyComponent::Update() {
-	if (owner->GetComponent<UserInputComponent>()
+	if (getObjectType() == ObjectType::Player
 		&& owner->GetComponent<BodyComponent>()->getPosition().y > SCREEN_HEIGHT) {
 		isDead = true;
 	}
-	else if (owner->GetComponent<BodyComponent>()->getPosition().y > SCREEN_HEIGHT) {
+	else if (getObjectType() != ObjectType::Player &&
+		owner->GetComponent<BodyComponent>()->getPosition().y > SCREEN_HEIGHT) {
 		dead = true;
 	}
 }

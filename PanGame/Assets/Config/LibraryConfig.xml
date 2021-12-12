@@ -17,5 +17,6 @@
 	</SoundLibrary>
 	<MusicLibrary>
 		<Asset name="BackgroundMusic" soundPath=".\Assets\Sounds\BackgroundMusic.mp3"></Asset>
+		<Asset name="Boss" soundPath=".\Assets\Sounds\Boss.mp3"></Asset>
 	</MusicLibrary>
 </Library>
