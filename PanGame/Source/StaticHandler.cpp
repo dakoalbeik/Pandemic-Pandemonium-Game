@@ -56,7 +56,9 @@ Uint32 GetKarenOffScreen(Uint32 interval, void* param) {
 	}
 
 	//continue playing background music that was paused
-	parameters->sound->resumeMusic();
+	if (!isDead) {
+		parameters->sound->resumeMusic();
+	}
 
 	return 0;
 }

@@ -20,6 +20,9 @@ void BodyComponent::Update() {
 		&& owner->GetComponent<BodyComponent>()->getPosition().y > SCREEN_HEIGHT) {
 		isDead = true;
 	}
+	else if (owner->GetComponent<BodyComponent>()->getPosition().y > SCREEN_HEIGHT) {
+		dead = true;
+	}
 }
 
 float BodyComponent::getAngle()

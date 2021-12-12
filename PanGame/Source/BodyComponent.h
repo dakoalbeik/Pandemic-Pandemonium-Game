@@ -21,7 +21,7 @@ public:
 	ObjectType getObjectType();
 	std::shared_ptr<PhysicsDevice> getPDevice();
 
-
+	bool dead{ false };
 private:
 	std::shared_ptr<PhysicsDevice> pDevice;
 	ObjectType objectType{ ObjectType::Any };

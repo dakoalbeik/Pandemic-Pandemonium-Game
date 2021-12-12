@@ -51,6 +51,7 @@ void SpriteComponent::Update()
 		else if (inputComponent->getInputDevice()->GetEvent(InputDevice::gameEvent::NA)) {
 			spriteID = 48;
 		}
+
 	}
 	else if (chaseComponent) {
 		flipThruSprites();
