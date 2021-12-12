@@ -11,12 +11,12 @@
 		<Asset name="Background" spritepath=".\Assets\Images\Hospital.png" isAnimated="false"></Asset>
 	</AssetLibrary>
 	<SoundLibrary>
-		<Asset name="Bounce" soundPath=".\Assets\Sounds\Bounce.ogg"></Asset>
-		<Asset name="Karen" soundPath=".\Assets\Sounds\Karen.wav"></Asset>
+		<Asset name="Bounce" soundPath=".\Assets\Sounds\Bounce.wav"></Asset>
+		<Asset name="Karen" soundPath=".\Assets\Sounds\Karen3.wav"></Asset>
 		<Asset name="GameOver" soundPath=".\Assets\Sounds\GameOver.wav"></Asset>
+		<Asset name="BossMusic" soundPath=".\Assets\Sounds\BossMusic2.wav"></Asset>
 	</SoundLibrary>
 	<MusicLibrary>
 		<Asset name="BackgroundMusic" soundPath=".\Assets\Sounds\BackgroundMusic.mp3"></Asset>
-		<Asset name="Boss" soundPath=".\Assets\Sounds\Boss.mp3"></Asset>
 	</MusicLibrary>
 </Library>

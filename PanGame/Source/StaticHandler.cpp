@@ -41,6 +41,7 @@ Uint32 RemoveKarenCallback(Uint32 interval, void* param) {
 
 // call back for stoping karen's chase behavior and changing velocity
 Uint32 GetKarenOffScreen(Uint32 interval, void* param) {
+
 	//cast back to type we want
 	KarenCallBackParam* parameters = static_cast<KarenCallBackParam*>(param);
 
@@ -116,10 +117,10 @@ StaticHandler::~StaticHandler() {
 
 std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::update(std::vector<std::shared_ptr<GameObject>>& gameObjects) {
 
-	// kill karen by invoking a callback after 5 seconds
+	// kill karen by invoking a callback after 8 seconds
 	if (killKaren) {
 		KarenCallBackParam* paramObject = new KarenCallBackParam(gameObjects, createKaren, soundController);
-		SDL_TimerID timerID = SDL_AddTimer(5000, GetKarenOffScreen, static_cast<void*>(paramObject)); //cast to void*
+		SDL_TimerID timerID = SDL_AddTimer(8000, GetKarenOffScreen, static_cast<void*>(paramObject)); //cast to void*
 		killKaren = false;  //reset flag
 	}
 
@@ -153,14 +154,16 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 	std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> newObjects = std::make_shared<std::vector<std::shared_ptr<GameObject>>>();
 
 	// create karen one time and wait for her to be deleted before making a new one
-	if ((score + 1) % 15 == 0 && !killKaren && createKaren) {
-		score++;
+	if ((score + 1) % 15 == 0 && !killKaren && createKaren && !isDead) {
+		soundController->pauseMusic();
+		soundController->playSound(Sound::BOSS_MUSIC, 0);
+
 		newObjects->push_back(std::shared_ptr<GameObject>(factory->create(karenElement)));
 		newObjects->back()->GetComponent<ChaseComponent>()->targetBody = playerBodyComponent;
 		newObjects->back()->GetComponent<BodyComponent>()->getPDevice()->setFixedRotation(newObjects->back().get(), true);
 		killKaren = true;
 		createKaren = false;
-		soundController->pauseMusic();
+
 		soundController->playSound(Sound::KAREN, 1);
 	}
 
