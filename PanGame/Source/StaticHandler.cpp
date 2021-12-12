@@ -6,6 +6,7 @@
 #include <string>
 #include <random>
 
+
 //struct so we can pass multiple things into sdl timer
 struct KarenCallBackParam {
 	std::vector<std::shared_ptr<GameObject>>& newObjects;
@@ -68,6 +69,10 @@ StaticHandler::StaticHandler(ObjectFactory* factory, std::shared_ptr<BodyCompone
 	std::shared_ptr<UserInputComponent> playerInputComponent, SoundController* soundController) :
 	playerBodyComponent(playerBodyComponent), playerInputComponent(playerInputComponent), factory(factory), soundController(soundController)
 {
+	//setting game start time
+	localtime_s(&start, &now);
+
+
 	//Configuring Future Assets
 	if (futureDoc.LoadFile("./Assets/Config/FutureObjects.xml") != tinyxml2::XML_SUCCESS)
 	{
@@ -117,6 +122,8 @@ StaticHandler::~StaticHandler() {
 
 std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::update(std::vector<std::shared_ptr<GameObject>>& gameObjects) {
 
+
+
 	// kill karen by invoking a callback after 8 seconds
 	if (killKaren) {
 		KarenCallBackParam* paramObject = new KarenCallBackParam(gameObjects, createKaren, soundController);
@@ -154,7 +161,32 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 	std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> newObjects = std::make_shared<std::vector<std::shared_ptr<GameObject>>>();
 
 	// create karen one time and wait for her to be deleted before making a new one
-	if ((score + 1) % 15 == 0 && !killKaren && createKaren && !isDead) {
+	//if ((score + 1) % 15 == 0 && !killKaren && createKaren && !isDead) {
+	//	soundController->pauseMusic();
+	//	soundController->playSound(Sound::BOSS_MUSIC, 0);
+	//	newObjects->push_back(std::shared_ptr<GameObject>(factory->create(karenElement)));
+	//	newObjects->back()->GetComponent<ChaseComponent>()->targetBody = playerBodyComponent;
+	//	newObjects->back()->GetComponent<BodyComponent>()->getPDevice()->setFixedRotation(newObjects->back().get(), true);
+	//	killKaren = true;
+	//	createKaren = false;
+	//	soundController->playSound(Sound::KAREN, 1);
+	//}
+
+
+
+	// timer using the ctime library (or time.h)
+	// time_t is a alias for an arithmetic type for time
+	time_t createNow{ time(NULL) };
+
+	// localtime_s is more secure version on locatime
+	// takes the tm pointer to store value in, and the time_t pointer to convert from
+	localtime_s(&karenTime, &createNow);
+
+	// difftime returns a double from the difference between (ending time, starting time)
+	auto diffTime = (int)difftime(karenTime.tm_sec, start.tm_sec);
+
+	// create Karen if it has been 15 seconds
+	if ((diffTime + 1) % 15 == 0 && !killKaren && createKaren && !isDead) {
 		soundController->pauseMusic();
 		soundController->playSound(Sound::BOSS_MUSIC, 0);
 
@@ -166,6 +198,9 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 
 		soundController->playSound(Sound::KAREN, 1);
 	}
+
+
+
 
 	// if last platform created is on screen, make some more
 	if ((firstRound) || (lastPlatformBody->getPosition().y > 0)) {

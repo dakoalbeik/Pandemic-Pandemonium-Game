@@ -1,8 +1,10 @@
 #pragma once
 #include "Definitions.h"
+#include "tinyxml2.h"
 #include <memory>
 #include <vector>
-#include "tinyxml2.h"
+#include <ctime>
+
 
 class StaticHandler
 {
@@ -14,6 +16,11 @@ public:
 	// gets called by the engine. Adds and removes platforms
 	std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> update(std::vector<std::shared_ptr<GameObject>>& gameObjects);
 
+	//timer for karens arrival and departure
+	time_t now{ time(NULL) };
+	// tm is a time struct with several members
+	tm karenTime;
+	tm start;
 private:
 	std::shared_ptr<BodyComponent> playerBodyComponent{ nullptr };
 	std::shared_ptr<UserInputComponent> playerInputComponent{ nullptr };
