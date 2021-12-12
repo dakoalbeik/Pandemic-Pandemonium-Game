@@ -85,6 +85,12 @@ void SoundController::haltMusic()
 	Mix_HaltMusic();
 }
 
+void SoundController::haltSound()
+{
+	// hard stops music (different than pausing)
+	Mix_HaltChannel(-1);
+}
+
 Sound SoundController::stringToSoundEnum(std::string name) {
 	if (name == "Bounce") {
 		return Sound::BOUNCE;

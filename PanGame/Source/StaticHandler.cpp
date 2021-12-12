@@ -253,8 +253,8 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 		newObjects->back()->GetComponent<BodyComponent>()->getPDevice()->setFixedRotation(newObjects->back().get(), true);
 		killKaren = true;
 		createKaren = false;
-
-		soundController->playSound(Sound::KAREN, 1);
+		//make karen complain 3 times (loops twice)
+		soundController->playSound(Sound::KAREN, 2);
 
 		karenBody = newObjects->back()->GetComponent<BodyComponent>();
 	}
