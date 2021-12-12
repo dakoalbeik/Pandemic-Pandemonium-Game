@@ -12,7 +12,7 @@
 			<Component name="Slide"></Component>
 		</Object>
 		<Object name="Karen">
-			<Component name="Body" x="150.0f" y="800.0f" angle="0.0f" objectType="Karen">
+			<Component name="Body" x="150.0f" y="900.0f" angle="0.0f" objectType="Karen">
 				<Physics spinSpeed="3" physicsBodyType="Dynamic" objectShape="Rectangle" density="5" friction="2"
 						 restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
 				</Physics>

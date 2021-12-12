@@ -47,7 +47,7 @@ ObjectType BodyComponent::getObjectType() {
 
 void BodyComponent::setDead() {
 
-	if (getObjectType() != ObjectType::Player && getPosition().y + 20 > SCREEN_HEIGHT) {
+	if (getObjectType() != ObjectType::Player && getPosition().y > SCREEN_HEIGHT + 20) {
 		dead = true;
 		if (getObjectType() == ObjectType::Platform) {
 			score++;
