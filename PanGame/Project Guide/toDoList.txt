@@ -17,22 +17,36 @@ New Goals:
 
 // these have to be done
 7) Automate the player's jump upon collision---------------------------------------
-8) Create more viruses and items dynamically.
-9) Work on Karen and have her chase.
-10) Display collected items
-11) Move setEnable() to PhysicsDevice::createFixture();
 12) FIX MEMORY LEAK!!!!!!!!!!!!!!!!!!!!!!!-----------------------------------------
+9) Work on Karen and have her chase------------------------------------------------
+1) get game to pause when you die so that you can't fly back on screen------------------------------
+4) fix score keeping to only be for platforms and not all static objects------------------------------------------
 
-// would really like done because its going to drive me nuts
-1) get game to pause when you die so that you can't fly back on screen
-2) put while loop for engine in source inside a loop to see if player wants to play again instead of closing game
-3) put background boxes behind "YOU LOSE!", Highscore, and Score areas to make more prominent
-4) fix score keeping to only be for platforms and not all static objects
+
+
+
+
+
+
+
+
+
 
 
 
 // For final
 1) Add health system for viruses and lives from collecting items
-2) Keep up with sets of items you've created
 3) make masks give some protection against viruses
-4) maybe implement more platforms or things to make you spring up or rockets or something
+8) Create more viruses and items dynamically.
+10) Display collected items
+11) collect items
+
+
+
+
+
+
+// would really like done because its going to drive me nuts
+2) put while loop for engine in source inside a loop to see if player wants to play again instead of closing game
+3) put background boxes behind "YOU LOSE!", Highscore, and Score areas to make more prominent
+2) Keep up with sets of items you've created

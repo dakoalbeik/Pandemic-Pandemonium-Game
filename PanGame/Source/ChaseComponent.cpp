@@ -43,12 +43,13 @@ Vector2D ChaseComponent::seek(Vector2D targetPosition) {
 	Vector2D desiredVelocity = positionDiff * MAX_VELOCITY;
 	return desiredVelocity - objectBody->getVelocity();
 }
+
 Vector2D ChaseComponent::pursuit() {
-	/*Vector2D distance = playerBody->getPosition() - objectBody->getPosition();*/
-	/*int T = distance.Length() / MAX_VELOCITY;*/
+	/*Vector2D distance = targetBody->getPosition() - objectBody->getPosition();
+	int T = distance.Length() / MAX_VELOCITY;*/
 
 	//constant time step
-	float T = 1.05;
+	float T = 0.75;
 	//target position + (target velocity * time step)
 	Vector2D futurePosition = targetBody->getPosition() + (targetBody->getVelocity() * T);
 	//pass in future position and calculate quickest way to get there
