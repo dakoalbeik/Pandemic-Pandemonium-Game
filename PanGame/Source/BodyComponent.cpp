@@ -16,14 +16,11 @@ BodyComponent::~BodyComponent()
 }
 
 void BodyComponent::Update() {
-	if (getObjectType() == ObjectType::Player
-		&& owner->GetComponent<BodyComponent>()->getPosition().y > SCREEN_HEIGHT) {
-		isDead = true;
+	if (getObjectType() == ObjectType::Player && getPosition().y > SCREEN_HEIGHT) {
+		isPlayerDead = true;
 	}
-	else if (getObjectType() != ObjectType::Player &&
-		owner->GetComponent<BodyComponent>()->getPosition().y > SCREEN_HEIGHT) {
-		dead = true;
-	}
+
+	setDead();
 }
 
 float BodyComponent::getAngle()
@@ -36,7 +33,6 @@ Vector2D BodyComponent::getPosition()
 	return pDevice->getPosition(owner.get());
 }
 
-
 std::shared_ptr<PhysicsDevice> BodyComponent::getPDevice() {
 	return pDevice;
 }
@@ -47,4 +43,18 @@ Vector2D BodyComponent::getVelocity() {
 
 ObjectType BodyComponent::getObjectType() {
 	return objectType;
+}
+
+void BodyComponent::setDead() {
+
+	if (getObjectType() != ObjectType::Player && getPosition().y + 20 > SCREEN_HEIGHT) {
+		dead = true;
+		if (getObjectType() == ObjectType::Platform) {
+			score++;
+		}
+	}
+
+	if (highScore < score) {
+		highScore = score;
+	}
 }

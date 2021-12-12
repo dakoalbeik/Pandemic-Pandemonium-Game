@@ -22,6 +22,7 @@ class PhysicsDevice;
 class StaticHandler;
 class RandomPosition;
 class SoundController;
+class TimeInterval;
 struct ObjectFactoryPresets;
 struct SpritePresets;
 struct BodyPresets;

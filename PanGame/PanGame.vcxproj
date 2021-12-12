@@ -175,6 +175,7 @@ xcopy "$(ProjectDir)Assets" "$(ProjectDir)Game\Assets" /E /I /F /Y</Command>
     <ClCompile Include="Source\SpriteComponent.cpp" />
     <ClCompile Include="Source\StaticHandler.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
+    <ClCompile Include="Source\TimeInterval.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\UserInputComponent.cpp" />
     <ClCompile Include="Source\Vector2D.cpp" />
@@ -205,6 +206,7 @@ xcopy "$(ProjectDir)Assets" "$(ProjectDir)Game\Assets" /E /I /F /Y</Command>
     <ClInclude Include="Source\SpriteComponent.h" />
     <ClInclude Include="Source\StaticHandler.h" />
     <ClInclude Include="Source\Texture.h" />
+    <ClInclude Include="Source\TimeInterval.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\UserInputComponent.h" />
     <ClInclude Include="Source\Vector2D.h" />

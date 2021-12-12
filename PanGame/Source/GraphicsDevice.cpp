@@ -132,7 +132,7 @@ void GraphicsDevice::setView(View* view)
 	this->view = std::unique_ptr<View>(view);
 }
 
-void GraphicsDevice::update(int& highScore, int& score, bool& isDead) {
+void GraphicsDevice::update(int& highScore, int& score, bool& isPlayerDead) {
 
 	//-------------------HIGHSCORE RENDERING------------------------------------------
 
@@ -193,7 +193,7 @@ void GraphicsDevice::update(int& highScore, int& score, bool& isDead) {
 	//--------------------DEATH RENDERING-------------------------------------------
 
 	std::string death{ NULL };
-	if (isDead) {
+	if (isPlayerDead) {
 		death = "YOU LOSE!";
 	}
 

@@ -28,6 +28,7 @@ public:
 private:
 
 	void writeHighScore();
+	void deleteObjects();
 	//Devices
 	std::unique_ptr<GraphicsDevice> gDevice{ nullptr };
 	std::unique_ptr<InputDevice> iDevice{ nullptr };

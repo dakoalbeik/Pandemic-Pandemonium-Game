@@ -25,5 +25,6 @@ public:
 private:
 	std::shared_ptr<PhysicsDevice> pDevice;
 	ObjectType objectType{ ObjectType::Any };
+	void setDead();
 };
 #endif // !BODYCOMPONENT_H

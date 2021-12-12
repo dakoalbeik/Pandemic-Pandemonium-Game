@@ -173,9 +173,10 @@ void Engine::reset()
 bool Engine::run()
 {
 	// if player is dead, then write high score to file
-	if (isDead && !gameOver) {
+	if (isPlayerDead && !gameOver) {
 		writeHighScore();
-		soundController->pauseMusic();
+		soundController->haltMusic();
+		soundController->haltSound();
 		soundController->playSound(Sound::GAME_OVER, 0);
 		gameOver = true;
 	}
@@ -213,6 +214,9 @@ void Engine::update()
 	// grab new objects from staticHandler
 	std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> newObjects = staticHandler->update(objects);
 
+	// delete objects
+	deleteObjects();
+
 	if (newObjects) {
 		for (auto& newObject : *(newObjects)) {
 			// insert in the second position after the backgound object
@@ -230,7 +234,7 @@ void Engine::draw()
 		object->draw();
 	}
 
-	gDevice->update(highScore, score, isDead);
+	gDevice->update(highScore, score, isPlayerDead);
 	gDevice->Present();
 }
 
@@ -241,4 +245,17 @@ void Engine::writeHighScore() {
 	fout.open("./Assets/Config/highscore.txt");
 	fout << highScore;
 	fout.close();
+}
+
+void Engine::deleteObjects()
+{
+	objects.erase(std::remove_if(
+		objects.begin(), objects.end(), //searches beginning of vector to end
+		[](std::shared_ptr<GameObject> object) {
+			bool shouldDelete = object->GetComponent<BodyComponent>()->dead;
+			// if object is has a slide component and is below screen, then delete the body and object
+			if (shouldDelete) { object->GetComponent<BodyComponent>()->getPDevice()->removeObject(object.get()); }
+			return (shouldDelete);
+		}),
+		objects.end());
 }
