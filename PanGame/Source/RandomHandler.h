@@ -1,23 +1,30 @@
 #pragma once
 #include "Vector2D.h"
+#include "Initializers.h"
 #include <vector>
 #include <random>
 
 
-class RandomPosition {
+struct PlatformPreset {
+	Vector2D platformPosition{ 0,0 };
+	bool hasItem{ false };
+	Item itemName{ Item::NONE };
+};
+
+class RandomHandler {
 public:
 	static std::random_device seed;
 	static std::default_random_engine e;
-	RandomPosition();
-	~RandomPosition();
+	RandomHandler();
+	~RandomHandler();
 
 
 	// returns a vector of random positions
-	std::vector<Vector2D>& getRandomPositions();
+	std::vector<PlatformPreset>& getRandomPositions();
 private:
 
 	// stores the random positions 
-	std::vector<Vector2D> positions;
+	std::vector<PlatformPreset> positions;
 
 	// return random vector based on previous Y
 	Vector2D getRandPosition(int currentY);

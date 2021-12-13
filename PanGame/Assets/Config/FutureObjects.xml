@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Objects>
 	<Enemy>
-		<Object name="Virus">
-			<Component name="Sprite" asset ="Virus" sprite="true"></Component>
-			<Component name="Body" x="400.0f" y="650.0f" angle="0.0f" objectType="Virus">
-				<Physics spinSpeed="3" physicsBodyType="Static" objectShape="Circle" density="5" friction="2"
-						 restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
-				</Physics>
-			</Component>
-			<Component name="Rotate"></Component>
-			<Component name="Slide"></Component>
-		</Object>
 		<Object name="Karen">
 			<Component name="Body" x="150.0f" y="900.0f" angle="0.0f" objectType="Karen">
 				<Physics spinSpeed="3" physicsBodyType="Dynamic" objectShape="Rectangle" density="5" friction="2"
@@ -38,8 +28,20 @@
 
 
 
-	<Collectable>
-		<Object name="Papers">
+	<Items>
+		<!--ORDER MATTERS-->
+		<Object name="Virus" width="75" height="75">
+			<Component name="Sprite" asset ="Virus" sprite="true"></Component>
+			<Component name="Body" x="400.0f" y="650.0f" angle="0.0f" objectType="Virus">
+				<Physics spinSpeed="3" physicsBodyType="Static" objectShape="Circle" density="5" friction="2"
+						 restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
+				</Physics>
+			</Component>
+			<Component name="Rotate"></Component>
+			<Component name="Slide"></Component>
+		</Object>
+
+		<Object name="Papers" width="30" height="36">
 			<Component name="Sprite" asset ="Papers" sprite="true"></Component>
 			<Component name="Body" x="145.0f" y="423.0f" angle="0.0f" objectType="Item">
 				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
@@ -49,7 +51,7 @@
 			<Component name="Slide"></Component>
 		</Object>
 
-		<Object name="Mask">
+		<Object name="Mask" width="30" height="11">
 			<Component name="Sprite" asset ="Mask" sprite="true"></Component>
 			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
 				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
@@ -58,5 +60,5 @@
 			</Component>
 			<Component name="Slide"></Component>
 		</Object>
-	</Collectable>
+	</Items>
 </Objects>

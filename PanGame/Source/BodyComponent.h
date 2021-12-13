@@ -1,6 +1,5 @@
 #pragma once
-#ifndef BODYCOMPONENT_H
-#define BODYCOMPONENT_H
+
 #include "Component.h"
 #include "ComponentList.h"
 #include "Vector2D.h"
@@ -27,4 +26,4 @@ private:
 	ObjectType objectType{ ObjectType::Any };
 	void setDead();
 };
-#endif // !BODYCOMPONENT_H
+

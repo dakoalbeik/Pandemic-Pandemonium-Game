@@ -31,6 +31,10 @@ inline bool isPlayerDead{ false }; //only for player
 enum GAME_OBJECT_SHAPE { GAME_RECTANGLE, GAME_CIRCLE };
 enum GAME_BODY_TYPE { GAME_STATIC, GAME_KINEMATIC, GAME_DYNAMIC };
 enum class ObjectType { Player, Karen, Platform, Virus, Item, Floor, Any };
+enum class Item { VIRUS, PAPERS, MASK, NONE };
+
+
+
 
 struct PhysicsPresets {
 	float spinSpeed{ 0.0f };

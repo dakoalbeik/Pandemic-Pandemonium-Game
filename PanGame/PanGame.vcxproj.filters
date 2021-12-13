@@ -48,7 +48,7 @@
     <ClCompile Include="Source\PhysicsDevice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\RandomPosition.cpp">
+    <ClCompile Include="Source\RandomHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Source.cpp">
@@ -128,7 +128,7 @@
     <ClInclude Include="Source\PhysicsDevice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\RandomPosition.h">
+    <ClInclude Include="Source\RandomHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\StaticHandler.h">

@@ -1,7 +1,7 @@
 #include "StaticHandler.h"
 #include "ObjectFactory.h"
 #include "PhysicsDevice.h"
-#include "RandomPosition.h"
+#include "RandomHandler.h"
 #include "SoundController.h"
 #include <string>
 #include <random>
@@ -52,7 +52,22 @@ StaticHandler::StaticHandler(ObjectFactory* factory, std::shared_ptr<BodyCompone
 		exit(1);
 	}
 
-	randomHandler = std::make_unique<RandomPosition>();
+	// store XML Items in vector
+	tinyxml2::XMLElement* platformItems = platformsElement->NextSiblingElement("Items");
+	tinyxml2::XMLElement* item = platformItems->FirstChildElement("Object");
+	float width{ 0 };
+	float height{ 0 };
+	ItemPreset tempPreset{ nullptr, {0,0} };
+	while (item) {
+		// query sprite width and height
+		item->QueryFloatAttribute("width", &width);
+		item->QueryFloatAttribute("height", &height);
+		tempPreset = { item, {width, height} };
+		platformItemsXML.push_back(tempPreset);
+		item = item->NextSiblingElement();
+	}
+
+	randomHandler = std::make_unique<RandomHandler>();
 
 }
 
@@ -121,22 +136,29 @@ void StaticHandler::createPlatforms(std::shared_ptr<std::vector<std::shared_ptr<
 	if ((firstRound) || (lastPlatformBody->getPosition().y > 0)) {
 		firstRound = false;
 		// getting positions from randomHandler
-		std::vector<Vector2D> positions{ randomHandler->getRandomPositions() };
+		std::vector<PlatformPreset> platformPresets{ randomHandler->getRandomPositions() };
 
 		// create a platform object for each position
-		for (auto& position : positions) {
+		for (auto& platformPreset : platformPresets) {
 			// create new vector with platforms
 			newObjects->push_back(std::shared_ptr<GameObject>(factory->create(platformElement)));
 
 			//find the body for the object and give it a random position
 			std::shared_ptr<BodyComponent> tempBody = newObjects->back()->GetComponent<BodyComponent>();
-			tempBody->getPDevice()->setTransform(newObjects->back().get(), { position, 0.0f });
+			tempBody->getPDevice()->setTransform(newObjects->back().get(), { platformPreset.platformPosition, 0.0f });
 			// ignoring the collsion with new platfroms
 			tempBody->getPDevice()->setEnabled(newObjects->back().get(), false);
+
+			// store the last platform's body position to decide when to create more platfroms
+			lastPlatformBody = newObjects->back()->GetComponent<BodyComponent>();
+
+			if (platformPreset.hasItem) {
+				createItem(newObjects, platformPreset.itemName, platformPreset.platformPosition);
+			}
+
 		}
 
-		// store the last platform's body position to decide when to create more platfroms
-		lastPlatformBody = newObjects->back()->GetComponent<BodyComponent>();
+
 	}
 }
 
@@ -181,4 +203,9 @@ void StaticHandler::getKarenOffScreen(std::vector<std::shared_ptr<GameObject>>& 
 			soundController->resumeMusic(Sound::BACKGROUND_MUSIC);
 		}
 	}
+}
+
+void StaticHandler::createItem(std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> newObjects, Item itemName, Vector2D platformPosition) {
+	// create item based on the enum class passed in
+	newObjects->push_back(std::shared_ptr<GameObject>(factory->create(platformItemsXML.at(static_cast<int>(itemName)).itemXML)));
 }
