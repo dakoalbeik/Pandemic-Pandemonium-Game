@@ -46,6 +46,8 @@ private:
 
 	void getKarenOffScreen(std::vector<std::shared_ptr<GameObject>>& newObjects);
 	void createItem(std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> newObjects, Item itemName, Vector2D platformPosition);
+	Vector2D centerItem(Vector2D platformPosition, Item itemName);
+
 
 
 	//flags for creation or killing

@@ -208,4 +208,21 @@ void StaticHandler::getKarenOffScreen(std::vector<std::shared_ptr<GameObject>>& 
 void StaticHandler::createItem(std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> newObjects, Item itemName, Vector2D platformPosition) {
 	// create item based on the enum class passed in
 	newObjects->push_back(std::shared_ptr<GameObject>(factory->create(platformItemsXML.at(static_cast<int>(itemName)).itemXML)));
+	// change item position to be on top of the platfroms
+	newObjects->back()->GetComponent<BodyComponent>()->getPDevice()->setTransform(newObjects->back().get(), { centerItem(platformPosition, itemName), 0 });
+
+}
+
+Vector2D StaticHandler::centerItem(Vector2D platformPosition, Item itemName) {
+
+	const Vector2D platformDimensions{ 90, 24 };
+
+	Vector2D itemPos{ 0, 0 };
+
+	float platformHalf = platformPosition.x + (platformDimensions.x / 2);
+	itemPos.x = platformHalf - (platformItemsXML.at(static_cast<int>(itemName)).dimensions.x / 2);
+	itemPos.y = platformPosition.y - platformItemsXML.at(static_cast<int>(itemName)).dimensions.y;
+
+
+	return itemPos;
 }
