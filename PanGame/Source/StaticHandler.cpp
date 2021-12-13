@@ -158,7 +158,6 @@ void StaticHandler::createPlatforms(std::shared_ptr<std::vector<std::shared_ptr<
 
 		}
 
-
 	}
 }
 

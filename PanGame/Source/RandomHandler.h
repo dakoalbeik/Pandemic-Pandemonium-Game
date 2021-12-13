@@ -21,6 +21,7 @@ public:
 
 	// returns a vector of random positions
 	std::vector<PlatformPreset>& getRandomPositions();
+
 private:
 
 	// stores the random positions 
@@ -28,6 +29,10 @@ private:
 
 	// return random vector based on previous Y
 	Vector2D getRandPosition(int currentY);
+	bool shouldCreateItem(float percent);
+
+	Item randomItem(const int maxRange);
+
 
 	// highest y position for new platforms
 	const int maxY{ -600 };

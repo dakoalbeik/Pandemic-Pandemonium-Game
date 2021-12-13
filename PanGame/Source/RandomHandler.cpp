@@ -1,4 +1,5 @@
 #include "RandomHandler.h"
+#include <iostream>
 
 std::random_device RandomHandler::seed;
 std::default_random_engine RandomHandler::e(seed());
@@ -33,11 +34,15 @@ std::vector<PlatformPreset>& RandomHandler::getRandomPositions() {
 
 	PlatformPreset tempPreset;
 
+
 	// keep generating positions until we populate an entire screen full
 	while (tempPreset.platformPosition.y > maxY) {
 		tempPreset.platformPosition = getRandPosition(currentY);
-		tempPreset.hasItem = true;
-		tempPreset.itemName = Item::VIRUS;
+		tempPreset.hasItem = false;
+		if (shouldCreateItem(10.0f)) {  //10% chance of creation
+			tempPreset.hasItem = true;
+			tempPreset.itemName = randomItem(2);
+		}
 		positions.push_back(tempPreset);
 		currentY = tempPreset.platformPosition.y - yOffset;
 	}
@@ -45,4 +50,16 @@ std::vector<PlatformPreset>& RandomHandler::getRandomPositions() {
 	return positions;
 }
 
+bool RandomHandler::shouldCreateItem(float percent) {
 
+	std::bernoulli_distribution shouldCreate(percent / 100);
+
+	return shouldCreate(e);
+}
+
+Item RandomHandler::randomItem(const int maxRange)
+{
+	std::uniform_int_distribution<int> itemIndex(0, maxRange);
+
+	return static_cast<Item>(itemIndex(e));
+}
