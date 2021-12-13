@@ -39,6 +39,13 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 		(objectTypeA == ObjectType::Platform || objectTypeA == ObjectType::Item)) {
 		contact->SetEnabled(false);
 	}
+	// decrease health on collision with player
+	else if (objectTypeA == ObjectType::Karen && objectTypeB == ObjectType::Player) {
+		health--;
+	}
+	else if (objectTypeB == ObjectType::Karen && objectTypeA == ObjectType::Player) {
+		health--;
+	}
 }
 
 void ContactListener::BeginContact(b2Contact* contact) {

@@ -234,7 +234,7 @@ void Engine::draw()
 		object->draw();
 	}
 
-	gDevice->update(highScore, score, isPlayerDead);
+	gDevice->update(highScore, score, isPlayerDead, health);
 	gDevice->Present();
 }
 

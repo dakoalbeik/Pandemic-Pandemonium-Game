@@ -24,8 +24,8 @@ GraphicsDevice::GraphicsDevice(Uint32 width, Uint32 height, bool fullScreen = tr
 	}
 
 	//Initialize Font----------File path-----------font size
-	scoreFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 22);
-	textFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 17);
+	scoreFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 19);
+	textFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 15);
 	deathFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 100);
 
 	if (scoreFont == nullptr || textFont == nullptr || deathFont == nullptr) {
@@ -132,63 +132,68 @@ void GraphicsDevice::setView(View* view)
 	this->view = std::unique_ptr<View>(view);
 }
 
-void GraphicsDevice::update(int& highScore, int& score, bool& isPlayerDead) {
+void GraphicsDevice::update(int& highScore, int& score, bool& isPlayerDead, int& health) {
 
 	//-------------------HIGHSCORE RENDERING------------------------------------------
 
-	std::string hScore = std::to_string(highScore);
-	std::string hScoreText = "Highscore";
+	std::string hScore = "Highscore: " + std::to_string(highScore);
 
 	//Render Command to Text
 	SDL_Color textColor = { 125, 92, 128 };
 
 	SDL_Surface* hScoreSurface{ TTF_RenderText_Solid(scoreFont, hScore.c_str(), textColor) };
-	SDL_Surface* hScoreTextSurface{ TTF_RenderText_Solid(textFont, hScoreText.c_str(), textColor) };
 
 	SDL_Texture* hScoreTexture = SDL_CreateTextureFromSurface(renderer, hScoreSurface);
-	SDL_Texture* hScoreTextTexture = SDL_CreateTextureFromSurface(renderer, hScoreTextSurface);
 
 	//Set rendering space and render to screen
 	int width = 0, height = 0;
 	SDL_QueryTexture(hScoreTexture, nullptr, nullptr, &width, &height);
 	SDL_Rect hScoreQuad = { SCREEN_WIDTH - width - 15, 20, width, height };
-	SDL_QueryTexture(hScoreTextTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect hScoreTextQuad = { SCREEN_WIDTH - width - 15, 2, width, height };
 
 	//Render to screen
 	SDL_RenderCopy(renderer, hScoreTexture, nullptr, &hScoreQuad);
-	SDL_RenderCopy(renderer, hScoreTextTexture, nullptr, &hScoreTextQuad);
 
 	SDL_FreeSurface(hScoreSurface);
-	SDL_FreeSurface(hScoreTextSurface);
 	SDL_DestroyTexture(hScoreTexture);
-	SDL_DestroyTexture(hScoreTextTexture);
+
 
 	//-----------------CURRENT SCORE RENDERING----------------------------------------
 
-	std::string cScore = std::to_string(score);
-	std::string cScoreText = "Current Score";
+	std::string cScore = "Current Score " + std::to_string(score);
 
 	SDL_Surface* cScoreSurface{ TTF_RenderText_Solid(scoreFont, cScore.c_str(), textColor) };
-	SDL_Surface* cScoreTextSurface{ TTF_RenderText_Solid(textFont, cScoreText.c_str(), textColor) };
 
 	//Render Command to Text
 	SDL_Texture* cScoreTexture = SDL_CreateTextureFromSurface(renderer, cScoreSurface);
-	SDL_Texture* cScoreTextTexture = SDL_CreateTextureFromSurface(renderer, cScoreTextSurface);
 
 	//Set rendering space and render to screen
 	SDL_QueryTexture(cScoreTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect cScoreQuad = { SCREEN_WIDTH - width - 15, 63, width, height };
-	SDL_QueryTexture(cScoreTextTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect cScoreTextQuad = { SCREEN_WIDTH - width - 15, 45, width, height };
+	SDL_Rect cScoreQuad = { SCREEN_WIDTH - width - 15, 45, width, height };
 
-	SDL_RenderCopy(renderer, cScoreTextTexture, nullptr, &cScoreTextQuad);
 	SDL_RenderCopy(renderer, cScoreTexture, nullptr, &cScoreQuad);
 
 	SDL_FreeSurface(cScoreSurface);
-	SDL_FreeSurface(cScoreTextSurface);
 	SDL_DestroyTexture(cScoreTexture);
-	SDL_DestroyTexture(cScoreTextTexture);
+
+
+	//----------------------------HEALTH BAR----------------------------------------
+
+	std::string healthBar = "Health " + std::to_string(health) + "%";
+
+	SDL_Surface* healthBarSurface{ TTF_RenderText_Solid(scoreFont, healthBar.c_str(), textColor) };
+
+	//Render Command to Text
+	SDL_Texture* healthBarTexture = SDL_CreateTextureFromSurface(renderer, healthBarSurface);
+
+	//Set rendering space and render to screen
+	SDL_QueryTexture(healthBarTexture, nullptr, nullptr, &width, &height);
+	SDL_Rect healthBarQuad = { 15, 20, width, height };
+
+	SDL_RenderCopy(renderer, healthBarTexture, nullptr, &healthBarQuad);
+
+	SDL_FreeSurface(healthBarSurface);
+	SDL_DestroyTexture(healthBarTexture);
+
 
 	//--------------------DEATH RENDERING-------------------------------------------
 

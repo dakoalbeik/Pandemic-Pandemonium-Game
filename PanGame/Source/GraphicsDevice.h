@@ -23,7 +23,7 @@ public:
 	View* getView();
 
 	void setView(View* view);
-	void update(int& highScore, int& score, bool& isPlayerDead);
+	void update(int& highScore, int& score, bool& isPlayerDead, int& health);
 
 private:
 	//Window(s) to display graphics

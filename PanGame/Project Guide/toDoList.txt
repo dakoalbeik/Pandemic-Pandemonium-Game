@@ -37,10 +37,11 @@ New Goals:
 // For final
 1) Add health system for viruses and lives from collecting items
 2) make masks give some protection against viruses
-3) Create more viruses and items dynamically.
+3) Create more viruses and items dynamically.-------------------------------------------------------------------
 4) Display collected items
 5) collect items
 6) randomize karen creation time
+7) colorize health
 
 
 

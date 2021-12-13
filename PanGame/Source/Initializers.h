@@ -26,7 +26,8 @@ const int SCREEN_HEIGHT{ 900 };
 
 inline int score{ 0 };
 inline int highScore{ 0 };
-inline bool isPlayerDead{ false }; //only for player
+inline bool isPlayerDead{ false };
+inline int health{ 100 };  //player health
 
 enum GAME_OBJECT_SHAPE { GAME_RECTANGLE, GAME_CIRCLE };
 enum GAME_BODY_TYPE { GAME_STATIC, GAME_KINEMATIC, GAME_DYNAMIC };
