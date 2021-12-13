@@ -143,7 +143,7 @@ void StaticHandler::createPlatforms(std::shared_ptr<std::vector<std::shared_ptr<
 void StaticHandler::handleKarenCreation(std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> newObjects)
 {
 	//if karen flag for creation is true and it has been 5 seconds
-	if (createKaren && time->hasITBeen(5)) {
+	if (createKaren && !isPlayerDead && time->hasITBeen(5)) {
 		//pause background music and play karen chase music
 		soundController->pauseMusic();
 		soundController->playSound(Sound::BOSS_MUSIC, 0);

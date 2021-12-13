@@ -36,17 +36,18 @@ New Goals:
 
 // For final
 1) Add health system for viruses and lives from collecting items
-3) make masks give some protection against viruses
-8) Create more viruses and items dynamically.
-10) Display collected items
-11) collect items
-
+2) make masks give some protection against viruses
+3) Create more viruses and items dynamically.
+4) Display collected items
+5) collect items
+6) randomize karen creation time
 
 
 
 
 
 // would really like done because its going to drive me nuts
-2) put while loop for engine in source inside a loop to see if player wants to play again instead of closing game
-3) put background boxes behind "YOU LOSE!", Highscore, and Score areas to make more prominent
-2) Keep up with sets of items you've created
+7) put while loop for engine in source inside a loop to see if player wants to play again instead of closing game
+8) put background boxes behind "YOU LOSE!", Highscore, and Score areas to make more prominent
+9) Keep up with sets of items you've created
+10) Make background img an actual background and not an object
