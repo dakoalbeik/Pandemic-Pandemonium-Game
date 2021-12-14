@@ -23,7 +23,9 @@ public:
 	View* getView();
 
 	void setView(View* view);
-	void update();
+	void update(ItemNumbers& itemNumbers);
+
+
 
 private:
 	//Window(s) to display graphics
@@ -34,7 +36,7 @@ private:
 	TTF_Font* textFont{ nullptr };
 	TTF_Font* deathFont{ nullptr };
 
-
+	void itemNums(ItemNumbers& itemNumbers);
 	//SDL_Surface* backImg{ nullptr };
 	//SDL_Texture* backTexture{ nullptr };
 

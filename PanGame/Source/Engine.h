@@ -13,6 +13,7 @@
 #include "PhysicsDevice.h"
 #include "StaticHandler.h"
 #include "SoundController.h"
+#include "Initializers.h"
 #include "Timer.h"
 
 class Engine {
@@ -47,6 +48,8 @@ private:
 	Uint32 FPS{ 0 };
 
 	bool gameOver{ false };
+
+	ItemNumbers itemNumbers;
 
 };
 

@@ -107,6 +107,9 @@ Sound SoundController::stringToSoundEnum(std::string name) {
 	else if (name == "BossMusic") {
 		return Sound::BOSS_MUSIC;
 	}
+	else if (name == "ItemCollect") {
+		return Sound::ITEM_COLLECT;
+	}
 	else {
 		printf("Failed to translate string to Enum");
 		exit(1);

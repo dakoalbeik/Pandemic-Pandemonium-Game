@@ -33,3 +33,4 @@ struct SlidePresets;
 struct ChasePresets;
 struct ItemPreset;
 struct PlatformPreset;
+struct ItemNumbers;

@@ -32,9 +32,11 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 	//player collision with item (collecting)
 	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Item) {
 		objectB->GetComponent<BodyComponent>()->dead = true;
+		soundController->playSound(Sound::ITEM_COLLECT, 0);
 	}
 	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Item) {
 		objectA->GetComponent<BodyComponent>()->dead = true;
+		soundController->playSound(Sound::ITEM_COLLECT, 0);
 	}
 	// decrease health on collision with karen
 	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Karen) {

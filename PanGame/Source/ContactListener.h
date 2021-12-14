@@ -4,6 +4,7 @@
 #include "PhysicsDevice.h"
 #include "GameObject.h"
 #include "SoundController.h"
+#include "Initializers.h"
 #include <iostream>
 
 class ContactListener : public b2ContactListener

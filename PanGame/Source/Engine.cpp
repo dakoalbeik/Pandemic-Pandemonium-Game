@@ -237,7 +237,7 @@ void Engine::draw()
 		object->draw();
 	}
 
-	gDevice->update();
+	gDevice->update(itemNumbers);
 	gDevice->Present();
 }
 

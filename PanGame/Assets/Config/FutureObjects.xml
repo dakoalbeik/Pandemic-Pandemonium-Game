@@ -60,5 +60,45 @@
 			</Component>
 			<Component name="Slide"></Component>
 		</Object>
+
+		<Object name="mRNA" width="30" height="41">
+			<Component name="Sprite" asset ="mRNA" sprite="true"></Component>
+			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
+				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
+							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
+				</Physics>
+			</Component>
+			<Component name="Slide"></Component>
+		</Object>
+
+		<Object name="Syringe" width="31" height="29">
+			<Component name="Sprite" asset ="Syringe" sprite="true"></Component>
+			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
+				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
+							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
+				</Physics>
+			</Component>
+			<Component name="Slide"></Component>
+		</Object>
+
+		<Object name="TestTube" width="29" height="28">
+			<Component name="Sprite" asset ="TestTube" sprite="true"></Component>
+			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
+				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
+							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
+				</Physics>
+			</Component>
+			<Component name="Slide"></Component>
+		</Object>
+
+		<Object name="Bundle" width="30" height="30">
+			<Component name="Sprite" asset ="Bundle" sprite="true"></Component>
+			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
+				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
+							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
+				</Physics>
+			</Component>
+		</Object>
+
 	</Items>
 </Objects>

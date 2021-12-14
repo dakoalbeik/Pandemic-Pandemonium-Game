@@ -29,10 +29,19 @@ inline int highScore{ 0 };
 inline bool isPlayerDead{ false };
 inline int health{ 100 };  //player health
 
+struct ItemNumbers {
+	int Papers{ 0 };
+	int Mask{ 0 };
+	int mRNA{ 0 };
+	int Syringe{ 0 };
+	int TestTube{ 0 };
+	int Bundle{ 0 };
+};
+
 enum GAME_OBJECT_SHAPE { GAME_RECTANGLE, GAME_CIRCLE };
 enum GAME_BODY_TYPE { GAME_STATIC, GAME_KINEMATIC, GAME_DYNAMIC };
 enum class ObjectType { Player, Karen, Platform, Virus, Item, Floor, Any };
-enum class Item { VIRUS, PAPERS, MASK, NONE };
+enum class Item { VIRUS, PAPERS, MASK, mRNA, SYRINGE, TESTTUBE, BUNDLE, NONE };
 
 
 
