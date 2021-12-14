@@ -23,16 +23,17 @@ public:
 	View* getView();
 
 	void setView(View* view);
-	void update(int& highScore, int& score, bool& isPlayerDead, int& health);
+	void update();
 
 private:
 	//Window(s) to display graphics
 	SDL_Window* screen{ nullptr };
 	SDL_Renderer* renderer{ nullptr };
-	//The texture to be used for the text
+	//The pointers to be used for the text
 	TTF_Font* scoreFont{ nullptr };
 	TTF_Font* textFont{ nullptr };
 	TTF_Font* deathFont{ nullptr };
+
 
 	//SDL_Surface* backImg{ nullptr };
 	//SDL_Texture* backTexture{ nullptr };

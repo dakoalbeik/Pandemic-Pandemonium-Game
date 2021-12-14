@@ -132,14 +132,35 @@ void GraphicsDevice::setView(View* view)
 	this->view = std::unique_ptr<View>(view);
 }
 
-void GraphicsDevice::update(int& highScore, int& score, bool& isPlayerDead, int& health) {
+void GraphicsDevice::update() {
+
+	//SDL Rectangles
+	SDL_Rect scoreboard{ SCREEN_WIDTH - 170, 15, 170, 65 };   // x, y, w, h
+	SDL_Rect itemNumbersBox{ 0, 40, 50, 200 };
+
+
+	//-----------------------HEALTH BAR-----------------------------------------------
+
+	//off white
+	SDL_SetRenderDrawColor(renderer, 245, 245, 245, 203);
+	//turn on opacity
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_ADD);
+	//draw scoreboard
+	SDL_RenderFillRect(renderer, &scoreboard);
+
+
+	//-----------------------ITEM NUMBERS BOX-----------------------------------------
+
+	//draw scoreboard
+	SDL_RenderFillRect(renderer, &itemNumbersBox);
+
 
 	//-------------------HIGHSCORE RENDERING------------------------------------------
 
-	std::string hScore = "Highscore: " + std::to_string(highScore);
+	std::string hScore = "Highscore " + std::to_string(highScore);
 
-	//Render Command to Text
-	SDL_Color textColor = { 125, 92, 128 };
+	//Render Command to Text     
+	SDL_Color textColor = { 84, 56, 220 };  //purpleish blue color
 
 	SDL_Surface* hScoreSurface{ TTF_RenderText_Solid(scoreFont, hScore.c_str(), textColor) };
 
@@ -178,16 +199,25 @@ void GraphicsDevice::update(int& highScore, int& score, bool& isPlayerDead, int&
 
 	//----------------------------HEALTH BAR----------------------------------------
 
-	std::string healthBar = "Health " + std::to_string(health) + "%";
+	// (health / maxHealth) * maxColorValue desired for color transition
+	int healthColorVar{ (int)(((float)health / 100) * 235) };
 
-	SDL_Surface* healthBarSurface{ TTF_RenderText_Solid(scoreFont, healthBar.c_str(), textColor) };
+	if (health <= 0) {
+		health = 0;
+		healthColorVar = 0;
+	}
+
+	std::string healthBar = "Health " + std::to_string(health) + "%";
+	SDL_Color healthColor{ 255, healthColorVar, healthColorVar };
+
+	SDL_Surface* healthBarSurface{ TTF_RenderText_Solid(scoreFont, healthBar.c_str(), healthColor) };
 
 	//Render Command to Text
 	SDL_Texture* healthBarTexture = SDL_CreateTextureFromSurface(renderer, healthBarSurface);
 
 	//Set rendering space and render to screen
 	SDL_QueryTexture(healthBarTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect healthBarQuad = { 15, 20, width, height };
+	SDL_Rect healthBarQuad = { 5, 5, width, height };
 
 	SDL_RenderCopy(renderer, healthBarTexture, nullptr, &healthBarQuad);
 

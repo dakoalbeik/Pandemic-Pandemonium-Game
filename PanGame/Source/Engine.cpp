@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "View.h"
+#include <Windows.h>
 #include <fstream>
 
 Engine::Engine(std::string levelConfig, std::string libraryConfig)
@@ -182,8 +183,9 @@ bool Engine::run()
 	}
 
 	// if window is closed, write high score to file
-	if (iDevice->GetEvent(InputDevice::gameEvent::QUIT)) {
+	if (/*isPlayerDead ||*/ iDevice->GetEvent(InputDevice::gameEvent::QUIT)) {
 		writeHighScore();
+		//Sleep(3000);   //make the computer pause for 3 seconds before closing program
 		return false;
 	}
 
@@ -205,26 +207,27 @@ void Engine::update()
 	iDevice->Update();
 	pDevice->update(1.0f / 100.0f);
 
+	if (!isPlayerDead) {
+		for (auto& object : objects) {
+			object->Update();
+		}
 
+		// grab new objects from staticHandler
+		std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> newObjects = staticHandler->update(objects);
 
-	for (auto& object : objects) {
-		object->Update();
-	}
+		// delete objects
+		deleteObjects();
 
-	// grab new objects from staticHandler
-	std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> newObjects = staticHandler->update(objects);
-
-	// delete objects
-	deleteObjects();
-
-	if (newObjects) {
-		for (auto& newObject : *(newObjects)) {
-			// insert in the second position after the backgound object
-			objects.insert(objects.begin() + 1, newObject);
+		if (newObjects) {
+			for (auto& newObject : *(newObjects)) {
+				// insert in the second position after the backgound object
+				objects.insert(objects.begin() + 1, newObject);
+			}
 		}
 	}
-
-
+	if (health <= 0) {
+		isPlayerDead = true;
+	}
 }
 
 void Engine::draw()
@@ -234,7 +237,7 @@ void Engine::draw()
 		object->draw();
 	}
 
-	gDevice->update(highScore, score, isPlayerDead, health);
+	gDevice->update();
 	gDevice->Present();
 }
 

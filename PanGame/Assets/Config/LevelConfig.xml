@@ -15,7 +15,7 @@
 					 restitiution="0" angularDamping="0" linearDamping="0" force="0" physicsOn="false">
 			</Physics>
 		</Component>
-	</Object>
+	</Object>-
 
 
 	<Object name="Platform">
