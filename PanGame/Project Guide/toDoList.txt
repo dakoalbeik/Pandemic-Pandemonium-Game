@@ -21,11 +21,11 @@ New Goals:
 9) Work on Karen and have her chase------------------------------------------------
 1) get game to pause when you die so that you can't fly back on screen------------------------------
 4) fix score keeping to only be for platforms and not all static objects------------------------------------------
-
-
-
-
-
+1) Add health system for viruses--------------------------------------------------------------------------------
+3) Create more viruses and items dynamically.-------------------------------------------------------------------
+5) collect items------------------------------------------------------------------------------------------------
+7) colorize health----------------------------------------------------------------------------------------------
+6) put background boxes behind "YOU LOSE!", Highscore, and Score areas to make more prominent---------------------------
 
 
 
@@ -35,20 +35,17 @@ New Goals:
 
 
 // For final
-1) Add health system for viruses--------------------------------------------------------------------------------
+1) fix collision
 2) make masks give some protection against viruses
-3) Create more viruses and items dynamically.-------------------------------------------------------------------
-4) Display collected items
-5) collect items
-6) randomize karen creation time
-7) colorize health
+3) Display collected items
+4) randomize karen creation time
+
 
 
 
 
 
 // would really like done because its going to drive me nuts
-7) put while loop for engine in source inside a loop to see if player wants to play again instead of closing game
-8) put background boxes behind "YOU LOSE!", Highscore, and Score areas to make more prominent
-9) Keep up with sets of items you've created
-10) Make background img an actual background and not an object
+5) put while loop for engine in source inside a loop to see if player wants to play again instead of closing game
+6) Keep up with sets of items you've created
+7) Make background img an actual background and not an object
