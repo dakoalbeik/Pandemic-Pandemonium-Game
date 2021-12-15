@@ -31,11 +31,22 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 
 	//player collision with item (collecting)
 	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Item) {
-		objectB->GetComponent<BodyComponent>()->dead = true;
+		auto itemBody = objectB->GetComponent<BodyComponent>();
+
+		// disable collsion
+		contact->SetEnabled(false);
+
+		// kill the Item
+		itemBody->dead = true;
 		soundController->playSound(Sound::ITEM_COLLECT, 0);
 	}
 	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Item) {
-		objectA->GetComponent<BodyComponent>()->dead = true;
+		auto itemBody = objectA->GetComponent<BodyComponent>();
+
+		// disable collsion
+		contact->SetEnabled(false);
+		// kill the Item
+		itemBody->dead = true;
 		soundController->playSound(Sound::ITEM_COLLECT, 0);
 	}
 	// decrease health on collision with karen
@@ -47,10 +58,27 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 	}
 	// decrease health on collision with virus
 	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Virus) {
-		health--;
+		auto itemBody = objectB->GetComponent<BodyComponent>();
+
+		// disable collsion
+		contact->SetEnabled(false);
+		// kill the Virus
+		itemBody->dead = true;
+		// decrease health
+		health -= 25;
+
+
+
 	}
 	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Virus) {
-		health--;
+		auto itemBody = objectA->GetComponent<BodyComponent>();
+
+		// disable collsion
+		contact->SetEnabled(false);
+		// kill the Virus
+		itemBody->dead = true;
+		// decrease health
+		health -= 25;
 	}
 
 

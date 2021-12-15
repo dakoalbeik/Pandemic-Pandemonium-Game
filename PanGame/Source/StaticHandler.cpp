@@ -116,16 +116,16 @@ std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> StaticHandler::createO
 void StaticHandler::physicsEnabled(std::vector<std::shared_ptr<GameObject>>& gameObjects) {
 	for (auto& object : gameObjects) {
 
-
-		if (auto platformComponent = object->GetComponent<SlideComponent>(); platformComponent) {
-			if (platformComponent->objectBody->getPosition().y > playerBodyComponent->getPosition().y
-				+ playerBodyComponent->getOwner()->GetComponent<SpriteComponent>()->getTexture()->getHeight() - 3) {
-				platformComponent->objectBody->getPDevice()->setEnabled(object.get(), true);
-			}
-			else {
-				platformComponent->objectBody->getPDevice()->setEnabled(object.get(), false);
-			}
+		// get the body component and disable physics on platform above the player
+		auto bodyComponent = object->GetComponent<BodyComponent>();
+		if (bodyComponent->getObjectType() == ObjectType::Platform && (bodyComponent->getPosition().y > playerBodyComponent->getPosition().y
+			+ playerBodyComponent->getOwner()->GetComponent<SpriteComponent>()->getTexture()->getHeight() - 3)) {
+			bodyComponent->getPDevice()->setEnabled(object.get(), true);
 		}
+		else if (bodyComponent->getObjectType() == ObjectType::Platform) {
+			bodyComponent->getPDevice()->setEnabled(object.get(), false);
+		}
+
 
 	}
 }
@@ -207,8 +207,12 @@ void StaticHandler::getKarenOffScreen(std::vector<std::shared_ptr<GameObject>>& 
 void StaticHandler::createItem(std::shared_ptr<std::vector<std::shared_ptr<GameObject>>> newObjects, Item itemName, Vector2D platformPosition) {
 	// create item based on the enum class passed in
 	newObjects->push_back(std::shared_ptr<GameObject>(factory->create(platformItemsXML.at(static_cast<int>(itemName)).itemXML)));
+	auto newItemBody = newObjects->back()->GetComponent<BodyComponent>();
+
 	// change item position to be on top of the platfroms
-	newObjects->back()->GetComponent<BodyComponent>()->getPDevice()->setTransform(newObjects->back().get(), { centerItem(platformPosition, itemName), 0 });
+	newItemBody->getPDevice()->setTransform(newObjects->back().get(), { centerItem(platformPosition, itemName), 0 });
+
+	//newItemBody->getPDevice()->setEnabled(newObjects->back().get(), false);
 
 }
 
