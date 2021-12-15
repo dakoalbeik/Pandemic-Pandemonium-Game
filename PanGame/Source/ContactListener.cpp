@@ -36,6 +36,9 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 		// disable collsion
 		contact->SetEnabled(false);
 
+		// increment item count
+		itemNumbers->incrementItemCount(itemType);
+
 		// kill the Item
 		itemBody->dead = true;
 		soundController->playSound(Sound::ITEM_COLLECT, 0);
@@ -122,11 +125,12 @@ void ContactListener::PostSolve(b2Contact* contact, const b2ContactImpulse* impu
 	if (objectTypeA == ObjectType::Player &&
 		(objectTypeB == ObjectType::Item ||
 			objectTypeB == ObjectType::Virus)) {
-		contact->SetEnabled(false);
+		//contact->SetEnabled(false);
 	}
 	else if (objectTypeB == ObjectType::Player &&
 		(objectTypeB == ObjectType::Item ||
 			objectTypeB == ObjectType::Virus)) {
-		contact->SetEnabled(false);
+		//contact->SetEnabled(false);
 	}
 }
+

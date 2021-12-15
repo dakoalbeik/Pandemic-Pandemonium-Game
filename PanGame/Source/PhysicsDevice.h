@@ -14,7 +14,7 @@ class PhysicsDevice
 {
 public:
 	PhysicsDevice(Vector2D gravity);
-	bool initialize(SoundController* soundController);
+	bool initialize(SoundController* soundController, ItemNumbers* itemNumbers);
 	bool update(float dt);
 
 	bool createFixture(GameObject* object, PhysicsPresets physics, GamePosition position);

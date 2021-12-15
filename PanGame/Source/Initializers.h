@@ -29,6 +29,11 @@ inline int highScore{ 0 };
 inline bool isPlayerDead{ false };
 inline int health{ 100 };  //player health
 
+enum GAME_OBJECT_SHAPE { GAME_RECTANGLE, GAME_CIRCLE };
+enum GAME_BODY_TYPE { GAME_STATIC, GAME_KINEMATIC, GAME_DYNAMIC };
+enum class ObjectType { Player, Karen, Platform, Virus, Item, Floor, Any };
+enum class Item { VIRUS, PAPERS, MASK, mRNA, SYRINGE, TESTTUBE, BUNDLE };
+
 struct ItemNumbers {
 	int Papers{ 0 };
 	int Mask{ 0 };
@@ -36,12 +41,64 @@ struct ItemNumbers {
 	int Syringe{ 0 };
 	int TestTube{ 0 };
 	int Bundle{ 0 };
+
+	void incrementItemCount(Item itemType) {
+		switch (itemType)
+		{
+		case Item::PAPERS:
+			++Papers;
+			break;
+		case Item::MASK:
+			++Mask;
+			break;
+		case Item::mRNA:
+			++mRNA;
+			break;
+		case Item::SYRINGE:
+			++Syringe;
+			break;
+		case Item::TESTTUBE:
+			++TestTube;
+			break;
+		case Item::BUNDLE:
+			break;
+		default:
+			break;
+		}
+
+		checkForFive();
+	}
+private:
+	void checkForFive() {
+		int count{ 0 };
+		if (Papers > 0) {
+			count++;
+		}
+		if (TestTube > 0) {
+			count++;
+		}
+		if (mRNA > 0) {
+			count++;
+		}
+		if (Mask > 0) {
+			count++;
+		}
+		if (Syringe > 0) {
+			count++;
+		}
+
+		if (count >= 5) {
+			Bundle++;
+			Papers--;
+			TestTube--;
+			mRNA--;
+			Mask--;
+			Syringe--;
+		}
+	}
+
 };
 
-enum GAME_OBJECT_SHAPE { GAME_RECTANGLE, GAME_CIRCLE };
-enum GAME_BODY_TYPE { GAME_STATIC, GAME_KINEMATIC, GAME_DYNAMIC };
-enum class ObjectType { Player, Karen, Platform, Virus, Item, Floor, Any };
-enum class Item { VIRUS, PAPERS, MASK, mRNA, SYRINGE, TESTTUBE, BUNDLE, NONE };
 
 
 

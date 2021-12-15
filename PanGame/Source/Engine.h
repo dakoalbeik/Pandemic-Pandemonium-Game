@@ -49,7 +49,7 @@ private:
 
 	bool gameOver{ false };
 
-	ItemNumbers itemNumbers;
+	std::unique_ptr<ItemNumbers> itemNumbers{ nullptr };
 
 };
 

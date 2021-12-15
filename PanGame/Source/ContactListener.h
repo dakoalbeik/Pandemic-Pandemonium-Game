@@ -10,7 +10,7 @@
 class ContactListener : public b2ContactListener
 {
 public:
-	ContactListener(SoundController* soundController) : soundController(soundController) {}
+	ContactListener(SoundController* soundController, ItemNumbers* itemNumbers) : soundController(soundController), itemNumbers(itemNumbers) {}
 
 	void BeginContact(b2Contact* contact);
 
@@ -20,6 +20,10 @@ public:
 
 	void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
 
+
 private:
+
+
 	SoundController* soundController{ nullptr };
+	ItemNumbers* itemNumbers{ nullptr };
 };

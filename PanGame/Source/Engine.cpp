@@ -103,7 +103,7 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 	// Initializing the Physics Device
 	Vector2D gravity = { 0.0f,1000.0f };
 	pDevice = std::make_unique<PhysicsDevice>(gravity);
-	if (!pDevice->initialize(soundController.get())) {
+	if (!pDevice->initialize(soundController.get(), itemNumbers.get())) {
 		printf("Failed to initialize physics device");
 		exit(1);
 	}
@@ -155,6 +155,8 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 	staticHandler = std::make_unique<StaticHandler>(factory.get(), playerBodyComponent, playerInputComponent, soundController.get());
 
 	soundController->playMusic(Sound::BACKGROUND_MUSIC);
+
+	itemNumbers = std::make_unique<ItemNumbers>();
 }
 
 Engine::~Engine()
@@ -237,7 +239,7 @@ void Engine::draw()
 		object->draw();
 	}
 
-	gDevice->update(itemNumbers);
+	gDevice->update(itemNumbers.get());
 	gDevice->Present();
 }
 

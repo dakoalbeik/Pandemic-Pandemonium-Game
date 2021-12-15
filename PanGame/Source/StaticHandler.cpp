@@ -212,7 +212,6 @@ void StaticHandler::createItem(std::shared_ptr<std::vector<std::shared_ptr<GameO
 	// change item position to be on top of the platfroms
 	newItemBody->getPDevice()->setTransform(newObjects->back().get(), { centerItem(platformPosition, itemName), 0 });
 
-	//newItemBody->getPDevice()->setEnabled(newObjects->back().get(), false);
 
 }
 
