@@ -39,6 +39,8 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 		itemBody->dead = true;
 		// decrease health
 		health -= 5;
+		//play virus damage sound
+		soundController->playSound(Sound::VIRUS, 0);
 
 	}
 	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Virus) {
@@ -50,6 +52,8 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 		itemBody->dead = true;
 		// decrease health
 		health -= 5;
+		//play virus damage sound
+		soundController->playSound(Sound::VIRUS, 0);
 	}
 
 	//player collision with item (collecting)

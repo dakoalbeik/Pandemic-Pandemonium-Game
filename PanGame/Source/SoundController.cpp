@@ -110,6 +110,9 @@ Sound SoundController::stringToSoundEnum(std::string name) {
 	else if (name == "ItemCollect") {
 		return Sound::ITEM_COLLECT;
 	}
+	else if (name == "Virus") {
+		return Sound::VIRUS;
+	}
 	else {
 		printf("Failed to translate string to Enum");
 		exit(1);

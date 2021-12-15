@@ -20,6 +20,7 @@
 		<Asset name="GameOver" soundPath=".\Assets\Sounds\GameOver.wav"></Asset>
 		<Asset name="BossMusic" soundPath=".\Assets\Sounds\BossMusic.wav"></Asset>
 		<Asset name="ItemCollect" soundPath=".\Assets\Sounds\ItemCollection.wav"></Asset>
+		<Asset name="Virus" soundPath=".\Assets\Sounds\Virus.wav"></Asset>
 	</SoundLibrary>
 	<MusicLibrary>
 		<Asset name="BackgroundMusic" soundPath=".\Assets\Sounds\BackgroundMusic.mp3"></Asset>
