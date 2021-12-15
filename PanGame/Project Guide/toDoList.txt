@@ -15,6 +15,7 @@ New Goals:
 5) Make player go in front of all objects------------------------------------------
 6) Add floor in--------------------------------------------------------------------
 
+
 // these have to be done
 7) Automate the player's jump upon collision---------------------------------------
 12) FIX MEMORY LEAK!!!!!!!!!!!!!!!!!!!!!!!-----------------------------------------
@@ -26,18 +27,17 @@ New Goals:
 5) collect items------------------------------------------------------------------------------------------------
 7) colorize health----------------------------------------------------------------------------------------------
 6) put background boxes behind "YOU LOSE!", Highscore, and Score areas to make more prominent---------------------------
-
-
-
+6) Keep up with sets of items you've created--------------------------------------------------------------------------
+3) Display collected items-----------------------------------------------
+1) fix collision---------------------------------------------------------
 
 
 
 
 
 // For final
-1) fix collision
+
 2) make masks give some protection against viruses
-3) Display collected items
 4) randomize karen creation time
 
 
@@ -47,5 +47,4 @@ New Goals:
 
 // would really like done because its going to drive me nuts
 5) put while loop for engine in source inside a loop to see if player wants to play again instead of closing game
-6) Keep up with sets of items you've created
 7) Make background img an actual background and not an object

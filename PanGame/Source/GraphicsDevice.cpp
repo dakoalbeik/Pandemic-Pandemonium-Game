@@ -136,42 +136,21 @@ void GraphicsDevice::setView(View* view)
 
 void GraphicsDevice::update(ItemNumbers* itemNumbers) {
 
-	////SDL Rectangles
-	//SDL_Rect scoreboard{ SCREEN_WIDTH - 170, 15, 170, 65 };   // x, y, w, h
-	//SDL_Rect itemNumbersBox{ 0, 40, 50, 200 };
-
-
-	////-----------------------SCOREBOARD-----------------------------------------------
-
-	////off white
-	//SDL_SetRenderDrawColor(renderer, 245, 245, 245, 203);
-	////turn on opacity
-	//SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_ADD);
-	////draw scoreboard
-	//SDL_RenderFillRect(renderer, &scoreboard);
-
-
-	////-----------------------ITEM NUMBERS BOX-----------------------------------------
-
-	////draw scoreboard
-	//SDL_RenderFillRect(renderer, &itemNumbersBox);
-
-
 	//-------------------HIGHSCORE RENDERING------------------------------------------
 
 	std::string hScore = "Highscore " + std::to_string(highScore);
 
 	//Render Command to Text     
-	SDL_Color textColor = { 84, 56, 220 };  //purpleish blue color
+	SDL_Color textColor = { 37, 44, 54 };
 
-	SDL_Surface* hScoreSurface{ TTF_RenderText_Solid(scoreFont, hScore.c_str(), textColor) };
+	SDL_Surface* hScoreSurface{ TTF_RenderText_Solid(textFont, hScore.c_str(), textColor) };
 
 	SDL_Texture* hScoreTexture = SDL_CreateTextureFromSurface(renderer, hScoreSurface);
 
 	//Set rendering space and render to screen
 	int width = 0, height = 0;
 	SDL_QueryTexture(hScoreTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect hScoreQuad = { SCREEN_WIDTH - width - 15, 20, width, height };
+	SDL_Rect hScoreQuad = { SCREEN_WIDTH - width - 15, 55, width, height };
 
 	//Render to screen
 	SDL_RenderCopy(renderer, hScoreTexture, nullptr, &hScoreQuad);
@@ -184,14 +163,14 @@ void GraphicsDevice::update(ItemNumbers* itemNumbers) {
 
 	std::string cScore = "Current Score " + std::to_string(score);
 
-	SDL_Surface* cScoreSurface{ TTF_RenderText_Solid(scoreFont, cScore.c_str(), textColor) };
+	SDL_Surface* cScoreSurface{ TTF_RenderText_Solid(textFont, cScore.c_str(), textColor) };
 
 	//Render Command to Text
 	SDL_Texture* cScoreTexture = SDL_CreateTextureFromSurface(renderer, cScoreSurface);
 
 	//Set rendering space and render to screen
 	SDL_QueryTexture(cScoreTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect cScoreQuad = { SCREEN_WIDTH - width - 15, 45, width, height };
+	SDL_Rect cScoreQuad = { SCREEN_WIDTH - width - 15, 80, width, height };
 
 	SDL_RenderCopy(renderer, cScoreTexture, nullptr, &cScoreQuad);
 
@@ -219,7 +198,7 @@ void GraphicsDevice::update(ItemNumbers* itemNumbers) {
 
 	//Set rendering space and render to screen
 	SDL_QueryTexture(healthBarTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect healthBarQuad = { 5, 5, width, height };
+	SDL_Rect healthBarQuad = { 5, 55, width, height };
 
 	SDL_RenderCopy(renderer, healthBarTexture, nullptr, &healthBarQuad);
 
@@ -256,7 +235,7 @@ void GraphicsDevice::update(ItemNumbers* itemNumbers) {
 void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 
 
-	SDL_Color itemsColor{ 0, 0, 0 };
+	SDL_Color itemsColor{ 37, 44, 54 };
 	int width = 0, height = 0;                // x = 79, y = 60
 
 	//--------------------------------BUNDLE----------------------------------------------
@@ -265,7 +244,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	SDL_Surface* bundleSurface{ TTF_RenderText_Solid(scoreFont, bundle.c_str(), itemsColor) };
 	SDL_Texture* bundleTexture = SDL_CreateTextureFromSurface(renderer, bundleSurface);
 	SDL_QueryTexture(bundleTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect bundleQuad = { 57, 80, width, height };
+	SDL_Rect bundleQuad = { 65, 13, width, height };
 	SDL_RenderCopy(renderer, bundleTexture, nullptr, &bundleQuad);
 	SDL_FreeSurface(bundleSurface);
 	SDL_DestroyTexture(bundleTexture);
@@ -277,7 +256,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	SDL_Surface* mRNASurface{ TTF_RenderText_Solid(scoreFont, mRNA.c_str(), itemsColor) };
 	SDL_Texture* mRNATexture = SDL_CreateTextureFromSurface(renderer, mRNASurface);
 	SDL_QueryTexture(mRNATexture, nullptr, nullptr, &width, &height);
-	SDL_Rect mRNAQuad = { 55, 140, width, height };
+	SDL_Rect mRNAQuad = { 165, 13, width, height };
 	SDL_RenderCopy(renderer, mRNATexture, nullptr, &mRNAQuad);
 	SDL_FreeSurface(mRNASurface);
 	SDL_DestroyTexture(mRNATexture);
@@ -288,7 +267,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	SDL_Surface* papersSurface{ TTF_RenderText_Solid(scoreFont, papers.c_str(), itemsColor) };
 	SDL_Texture* papersTexture = SDL_CreateTextureFromSurface(renderer, papersSurface);
 	SDL_QueryTexture(papersTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect papersQuad = { 57, 200, width, height };
+	SDL_Rect papersQuad = { 265, 13, width, height };
 	SDL_RenderCopy(renderer, papersTexture, nullptr, &papersQuad);
 	SDL_FreeSurface(papersSurface);
 	SDL_DestroyTexture(papersTexture);
@@ -299,7 +278,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	SDL_Surface* syringeSurface{ TTF_RenderText_Solid(scoreFont, syringe.c_str(), itemsColor) };
 	SDL_Texture* syringeTexture = SDL_CreateTextureFromSurface(renderer, syringeSurface);
 	SDL_QueryTexture(syringeTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect syringeQuad = { 57, 270, width, height };
+	SDL_Rect syringeQuad = { 365, 13, width, height };
 	SDL_RenderCopy(renderer, syringeTexture, nullptr, &syringeQuad);
 	SDL_FreeSurface(syringeSurface);
 	SDL_DestroyTexture(syringeTexture);
@@ -310,7 +289,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	SDL_Surface* testtubeSurface{ TTF_RenderText_Solid(scoreFont, testtube.c_str(), itemsColor) };
 	SDL_Texture* testtubeTexture = SDL_CreateTextureFromSurface(renderer, testtubeSurface);
 	SDL_QueryTexture(testtubeTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect testtubeQuad = { 57, 330, width, height };
+	SDL_Rect testtubeQuad = { 465, 13, width, height };
 	SDL_RenderCopy(renderer, testtubeTexture, nullptr, &testtubeQuad);
 	SDL_FreeSurface(testtubeSurface);
 	SDL_DestroyTexture(testtubeTexture);
@@ -321,7 +300,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	SDL_Surface* maskSurface{ TTF_RenderText_Solid(scoreFont, mask.c_str(), itemsColor) };
 	SDL_Texture* maskTexture = SDL_CreateTextureFromSurface(renderer, maskSurface);
 	SDL_QueryTexture(maskTexture, nullptr, nullptr, &width, &height);
-	SDL_Rect maskQuad = { 57, 390, width, height };
+	SDL_Rect maskQuad = { 565, 13, width, height };
 	SDL_RenderCopy(renderer, maskTexture, nullptr, &maskQuad);
 	SDL_FreeSurface(maskSurface);
 	SDL_DestroyTexture(maskTexture);
