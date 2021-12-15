@@ -12,6 +12,7 @@ BodyComponent::BodyComponent(std::shared_ptr<GameObject> owner, BodyPresets& pre
 	};
 
 }
+
 BodyComponent::~BodyComponent()
 {
 }
@@ -49,7 +50,6 @@ ObjectType BodyComponent::getObjectType() {
 Item BodyComponent::getItemType() {
 	return itemType;
 }
-
 
 void BodyComponent::setDead() {
 
