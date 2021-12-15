@@ -32,7 +32,6 @@ private:
 	SDL_Window* screen{ nullptr };
 	SDL_Renderer* renderer{ nullptr };
 	//The pointers to be used for the text
-	TTF_Font* scoreFont{ nullptr };
 	TTF_Font* textFont{ nullptr };
 	TTF_Font* deathFont{ nullptr };
 

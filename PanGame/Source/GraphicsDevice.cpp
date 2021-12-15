@@ -1,8 +1,6 @@
 #include <string>
 #include "GraphicsDevice.h"
 
-#include <iostream>
-
 
 GraphicsDevice::GraphicsDevice(Uint32 width, Uint32 height, bool fullScreen = true) : SCREEN_WIDTH(width), SCREEN_HEIGHT(height)
 {
@@ -26,11 +24,10 @@ GraphicsDevice::GraphicsDevice(Uint32 width, Uint32 height, bool fullScreen = tr
 	}
 
 	//Initialize Font----------File path-----------font size
-	scoreFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 19);
-	textFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 15);
+	textFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 19);
 	deathFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 100);
 
-	if (scoreFont == nullptr || textFont == nullptr || deathFont == nullptr) {
+	if (textFont == nullptr || deathFont == nullptr) {
 		printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
 	}
 
@@ -94,7 +91,6 @@ GraphicsDevice::~GraphicsDevice()
 	renderer = nullptr;
 
 	//clean up text
-	TTF_CloseFont(scoreFont);
 	TTF_CloseFont(textFont);
 	TTF_CloseFont(deathFont);
 
@@ -191,7 +187,7 @@ void GraphicsDevice::update(ItemNumbers* itemNumbers) {
 	std::string healthBar = "Health " + std::to_string(health) + "%";
 	SDL_Color healthColor{ 255, healthColorVar, healthColorVar };
 
-	SDL_Surface* healthBarSurface{ TTF_RenderText_Solid(scoreFont, healthBar.c_str(), healthColor) };
+	SDL_Surface* healthBarSurface{ TTF_RenderText_Solid(textFont, healthBar.c_str(), healthColor) };
 
 	//Render Command to Text
 	SDL_Texture* healthBarTexture = SDL_CreateTextureFromSurface(renderer, healthBarSurface);
@@ -241,7 +237,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	//--------------------------------BUNDLE----------------------------------------------
 
 	std::string bundle = std::to_string(itemNumbers->Bundle);
-	SDL_Surface* bundleSurface{ TTF_RenderText_Solid(scoreFont, bundle.c_str(), itemsColor) };
+	SDL_Surface* bundleSurface{ TTF_RenderText_Solid(textFont, bundle.c_str(), itemsColor) };
 	SDL_Texture* bundleTexture = SDL_CreateTextureFromSurface(renderer, bundleSurface);
 	SDL_QueryTexture(bundleTexture, nullptr, nullptr, &width, &height);
 	SDL_Rect bundleQuad = { 65, 13, width, height };
@@ -253,7 +249,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	//--------------------------------mRNA----------------------------------------------
 
 	std::string mRNA = std::to_string(itemNumbers->mRNA);
-	SDL_Surface* mRNASurface{ TTF_RenderText_Solid(scoreFont, mRNA.c_str(), itemsColor) };
+	SDL_Surface* mRNASurface{ TTF_RenderText_Solid(textFont, mRNA.c_str(), itemsColor) };
 	SDL_Texture* mRNATexture = SDL_CreateTextureFromSurface(renderer, mRNASurface);
 	SDL_QueryTexture(mRNATexture, nullptr, nullptr, &width, &height);
 	SDL_Rect mRNAQuad = { 165, 13, width, height };
@@ -264,7 +260,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	//--------------------------------PAPERS----------------------------------------------
 
 	std::string papers = std::to_string(itemNumbers->Papers);
-	SDL_Surface* papersSurface{ TTF_RenderText_Solid(scoreFont, papers.c_str(), itemsColor) };
+	SDL_Surface* papersSurface{ TTF_RenderText_Solid(textFont, papers.c_str(), itemsColor) };
 	SDL_Texture* papersTexture = SDL_CreateTextureFromSurface(renderer, papersSurface);
 	SDL_QueryTexture(papersTexture, nullptr, nullptr, &width, &height);
 	SDL_Rect papersQuad = { 265, 13, width, height };
@@ -275,7 +271,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	//--------------------------------SYRINGE----------------------------------------------
 
 	std::string syringe = std::to_string(itemNumbers->Syringe);
-	SDL_Surface* syringeSurface{ TTF_RenderText_Solid(scoreFont, syringe.c_str(), itemsColor) };
+	SDL_Surface* syringeSurface{ TTF_RenderText_Solid(textFont, syringe.c_str(), itemsColor) };
 	SDL_Texture* syringeTexture = SDL_CreateTextureFromSurface(renderer, syringeSurface);
 	SDL_QueryTexture(syringeTexture, nullptr, nullptr, &width, &height);
 	SDL_Rect syringeQuad = { 365, 13, width, height };
@@ -286,7 +282,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	//--------------------------------TESTTUBE----------------------------------------------
 
 	std::string testtube = std::to_string(itemNumbers->TestTube);
-	SDL_Surface* testtubeSurface{ TTF_RenderText_Solid(scoreFont, testtube.c_str(), itemsColor) };
+	SDL_Surface* testtubeSurface{ TTF_RenderText_Solid(textFont, testtube.c_str(), itemsColor) };
 	SDL_Texture* testtubeTexture = SDL_CreateTextureFromSurface(renderer, testtubeSurface);
 	SDL_QueryTexture(testtubeTexture, nullptr, nullptr, &width, &height);
 	SDL_Rect testtubeQuad = { 465, 13, width, height };
@@ -297,7 +293,7 @@ void GraphicsDevice::itemNums(ItemNumbers* itemNumbers) {
 	//--------------------------------Mask----------------------------------------------
 
 	std::string mask = std::to_string(itemNumbers->Mask);
-	SDL_Surface* maskSurface{ TTF_RenderText_Solid(scoreFont, mask.c_str(), itemsColor) };
+	SDL_Surface* maskSurface{ TTF_RenderText_Solid(textFont, mask.c_str(), itemsColor) };
 	SDL_Texture* maskTexture = SDL_CreateTextureFromSurface(renderer, maskSurface);
 	SDL_QueryTexture(maskTexture, nullptr, nullptr, &width, &height);
 	SDL_Rect maskQuad = { 565, 13, width, height };

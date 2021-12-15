@@ -38,9 +38,7 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 		// kill the Virus
 		itemBody->dead = true;
 		// decrease health
-		health -= 25;
-
-
+		health -= 5;
 
 	}
 	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Virus) {
@@ -51,7 +49,7 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 		// kill the Virus
 		itemBody->dead = true;
 		// decrease health
-		health -= 25;
+		health -= 5;
 	}
 
 	//player collision with item (collecting)
@@ -83,10 +81,10 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 	}
 	// decrease health on collision with karen
 	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Karen) {
-		//health -= 50;
+		health -= 15;
 	}
 	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Karen) {
-		//health -= 50;
+		health -= 15;
 	}
 
 
