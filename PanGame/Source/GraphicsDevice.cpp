@@ -1,4 +1,4 @@
-#include <string>
+﻿#include <string>
 #include "GraphicsDevice.h"
 
 
@@ -25,6 +25,7 @@ GraphicsDevice::GraphicsDevice(Uint32 width, Uint32 height, bool fullScreen = tr
 
 	//Initialize Font----------File path-----------font size
 	textFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 19);
+	healthFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 22);
 	deathFont = TTF_OpenFont("./Assets/Fonts/impact.ttf", 100);
 
 	if (textFont == nullptr || deathFont == nullptr) {
@@ -132,6 +133,13 @@ void GraphicsDevice::setView(View* view)
 
 void GraphicsDevice::update(ItemNumbers* itemNumbers) {
 
+
+
+
+
+
+
+
 	//-------------------HIGHSCORE RENDERING------------------------------------------
 
 	std::string hScore = "Highscore " + std::to_string(highScore);
@@ -184,10 +192,20 @@ void GraphicsDevice::update(ItemNumbers* itemNumbers) {
 		healthColorVar = 0;
 	}
 
-	std::string healthBar = "Health " + std::to_string(health) + "%";
+	const std::string letter = "|";
+	std::string bar = "";
+	int tempHealth = health;
+
+	while (tempHealth > 0) {
+		tempHealth -= 5;
+		bar += letter;
+	}
+
+
+	std::string healthBar = "Health   " + bar;
 	SDL_Color healthColor{ 255, healthColorVar, healthColorVar };
 
-	SDL_Surface* healthBarSurface{ TTF_RenderText_Solid(textFont, healthBar.c_str(), healthColor) };
+	SDL_Surface* healthBarSurface{ TTF_RenderText_Solid(healthFont, healthBar.c_str(), healthColor) };
 
 	//Render Command to Text
 	SDL_Texture* healthBarTexture = SDL_CreateTextureFromSurface(renderer, healthBarSurface);

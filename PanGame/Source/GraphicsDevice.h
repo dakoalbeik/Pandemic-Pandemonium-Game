@@ -33,6 +33,7 @@ private:
 	SDL_Renderer* renderer{ nullptr };
 	//The pointers to be used for the text
 	TTF_Font* textFont{ nullptr };
+	TTF_Font* healthFont{ nullptr };
 	TTF_Font* deathFont{ nullptr };
 
 	void itemNums(ItemNumbers* itemNumbers);

@@ -81,10 +81,10 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 	}
 	// decrease health on collision with karen
 	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Karen) {
-		health -= 15;
+		health -= 10;
 	}
 	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Karen) {
-		health -= 15;
+		health -= 10;
 	}
 
 
