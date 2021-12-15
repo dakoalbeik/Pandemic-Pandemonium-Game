@@ -32,7 +32,7 @@ inline int health{ 100 };  //player health
 enum GAME_OBJECT_SHAPE { GAME_RECTANGLE, GAME_CIRCLE };
 enum GAME_BODY_TYPE { GAME_STATIC, GAME_KINEMATIC, GAME_DYNAMIC };
 enum class ObjectType { Player, Karen, Platform, Virus, Item, Floor, Any };
-enum class Item { VIRUS, PAPERS, MASK, mRNA, SYRINGE, TESTTUBE, BUNDLE };
+enum class Item { VIRUS, PAPERS, MASK, mRNA, SYRINGE, TESTTUBE, BUNDLE, NONE };
 
 struct ItemNumbers {
 	int Papers{ 0 };
@@ -41,6 +41,7 @@ struct ItemNumbers {
 	int Syringe{ 0 };
 	int TestTube{ 0 };
 	int Bundle{ 0 };
+
 
 	void incrementItemCount(Item itemType) {
 		switch (itemType)
@@ -146,6 +147,7 @@ struct BodyPresets {
 	std::shared_ptr<SpriteComponent>sprite{ nullptr };
 	PhysicsPresets physics;
 	ObjectType objectType{ ObjectType::Any };
+	Item itemType{ Item::NONE };
 };
 
 

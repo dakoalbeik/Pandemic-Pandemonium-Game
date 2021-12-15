@@ -18,12 +18,14 @@ public:
 	Vector2D getPosition();
 	Vector2D getVelocity();
 	ObjectType getObjectType();
+	Item getItemType();
 	std::shared_ptr<PhysicsDevice> getPDevice();
 
 	bool dead{ false };
 private:
 	std::shared_ptr<PhysicsDevice> pDevice;
 	ObjectType objectType{ ObjectType::Any };
+	Item itemType{ Item::NONE };
 	void setDead();
 };
 

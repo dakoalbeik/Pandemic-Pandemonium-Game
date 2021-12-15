@@ -99,6 +99,8 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 
 	iDevice = std::make_unique<InputDevice>();
 
+	// create itemNumbers counter
+	itemNumbers = std::make_unique<ItemNumbers>();
 
 	// Initializing the Physics Device
 	Vector2D gravity = { 0.0f,1000.0f };
@@ -156,7 +158,7 @@ Engine::Engine(std::string levelConfig, std::string libraryConfig)
 
 	soundController->playMusic(Sound::BACKGROUND_MUSIC);
 
-	itemNumbers = std::make_unique<ItemNumbers>();
+
 }
 
 Engine::~Engine()

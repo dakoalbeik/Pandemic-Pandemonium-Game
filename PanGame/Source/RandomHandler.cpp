@@ -41,7 +41,7 @@ std::vector<PlatformPreset>& RandomHandler::getRandomPositions() {
 		tempPreset.hasItem = false;
 		if (shouldCreateItem(10.0f)) {  //10% chance of creation
 			tempPreset.hasItem = true;
-			tempPreset.itemName = randomItem(6);
+			tempPreset.itemName = randomItem(5);
 		}
 		positions.push_back(tempPreset);
 		currentY = tempPreset.platformPosition.y - yOffset;

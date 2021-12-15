@@ -82,34 +82,6 @@
 		</Component>
 		<Component name="Slide"></Component>
 	</Object>
-	<Object name="Virus">
-		<Component name="Sprite" asset ="Virus" sprite="true"></Component>
-		<Component name="Body" x="400.0f" y="650.0f" angle="0.0f" objectType="Virus">
-			<Physics spinSpeed="3" physicsBodyType="Static" objectShape="Circle" density="5" friction="2"
-                     restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
-			</Physics>
-		</Component>
-		<Component name="Rotate"></Component>
-		<Component name="Slide"></Component>
-	</Object>
-	<Object name="Papers">
-		<Component name="Sprite" asset ="Papers" sprite="true"></Component>
-		<Component name="Body" x="145.0f" y="423.0f" angle="0.0f" objectType="Item">
-			<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
-                     restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
-			</Physics>
-		</Component>
-		<Component name="Slide"></Component>
-	</Object>
-	<Object name="Mask">
-		<Component name="Sprite" asset ="Mask" sprite="true"></Component>
-		<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
-			<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
-                     restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
-			</Physics>
-		</Component>
-		<Component name="Slide"></Component>
-	</Object>
 	<Object name="Floor">
 		<Component name="Sprite" asset ="Floor" sprite="true"></Component>
 		<Component name="Body" x="0.0f" y="830f" angle="0.0f" objectType="Floor">

@@ -124,6 +124,34 @@ void ObjectFactory::addBodyPresets(BodyPresets* presets, tinyxml2::XMLElement* c
 	}
 	else if (tempAttribute == "Item") {
 		presets->objectType = ObjectType::Item;
+		tempAttribute = componentElement->Attribute("itemType");
+		if (tempAttribute == "Virus") {
+			presets->itemType = Item::VIRUS;
+		}
+		else if (tempAttribute == "Papers") {
+
+			presets->itemType = Item::PAPERS;
+		}
+		else if (tempAttribute == "Mask") {
+			presets->itemType = Item::MASK;
+
+		}
+		else if (tempAttribute == "mRNA") {
+			presets->itemType = Item::mRNA;
+
+		}
+		else if (tempAttribute == "Syringe") {
+			presets->itemType = Item::SYRINGE;
+
+		}
+		else if (tempAttribute == "TestTube") {
+			presets->itemType = Item::TESTTUBE;
+
+		}
+		else if (tempAttribute == "Bundle") {
+			presets->itemType = Item::BUNDLE;
+
+		}
 	}
 	else if (tempAttribute == "Karen") {
 		presets->objectType = ObjectType::Karen;

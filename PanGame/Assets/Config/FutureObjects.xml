@@ -32,7 +32,7 @@
 		<!--ORDER MATTERS-->
 		<Object name="Virus" width="75" height="75">
 			<Component name="Sprite" asset ="Virus" sprite="true"></Component>
-			<Component name="Body" x="400.0f" y="650.0f" angle="0.0f" objectType="Virus">
+			<Component name="Body" x="400.0f" y="650.0f" angle="0.0f" objectType="Virus" itemType="Virus">
 				<Physics spinSpeed="3" physicsBodyType="Static" objectShape="Circle" density="5" friction="2"
 						 restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
 				</Physics>
@@ -43,7 +43,7 @@
 
 		<Object name="Papers" width="30" height="36">
 			<Component name="Sprite" asset ="Papers" sprite="true"></Component>
-			<Component name="Body" x="145.0f" y="423.0f" angle="0.0f" objectType="Item">
+			<Component name="Body" x="145.0f" y="423.0f" angle="0.0f" objectType="Item" itemType="Papers">
 				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
 							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
 				</Physics>
@@ -53,7 +53,7 @@
 
 		<Object name="Mask" width="30" height="11">
 			<Component name="Sprite" asset ="Mask" sprite="true"></Component>
-			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
+			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item" itemType="Mask">
 				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
 							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
 				</Physics>
@@ -63,7 +63,7 @@
 
 		<Object name="mRNA" width="30" height="41">
 			<Component name="Sprite" asset ="mRNA" sprite="true"></Component>
-			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
+			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item" itemType="mRNA">
 				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
 							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
 				</Physics>
@@ -73,7 +73,7 @@
 
 		<Object name="Syringe" width="31" height="29">
 			<Component name="Sprite" asset ="Syringe" sprite="true"></Component>
-			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
+			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item" itemType="Syringe">
 				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
 							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
 				</Physics>
@@ -83,7 +83,7 @@
 
 		<Object name="TestTube" width="29" height="28">
 			<Component name="Sprite" asset ="TestTube" sprite="true"></Component>
-			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
+			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item" itemType="TestTube">
 				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
 							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
 				</Physics>
@@ -93,7 +93,7 @@
 
 		<Object name="Bundle" width="30" height="30">
 			<Component name="Sprite" asset ="Bundle" sprite="true"></Component>
-			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item">
+			<Component name="Body" x="275.0f" y="575.0f" angle="0.0f" objectType="Item" itemType="Bundle">
 				<Physics physicsBodyType="Static" objectShape="Rectangle" density="5" friction="2"
 							restitiution="3" angularDamping="0" linearDamping="2" force="3" physicsOn="true">
 				</Physics>

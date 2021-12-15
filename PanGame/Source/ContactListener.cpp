@@ -29,36 +29,6 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 		soundController->playSound(Sound::BOUNCE, 0);
 	}
 
-	//player collision with item (collecting)
-	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Item) {
-		auto itemBody = objectB->GetComponent<BodyComponent>();
-
-		// disable collsion
-		contact->SetEnabled(false);
-
-		// increment item count
-		itemNumbers->incrementItemCount(itemType);
-
-		// kill the Item
-		itemBody->dead = true;
-		soundController->playSound(Sound::ITEM_COLLECT, 0);
-	}
-	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Item) {
-		auto itemBody = objectA->GetComponent<BodyComponent>();
-
-		// disable collsion
-		contact->SetEnabled(false);
-		// kill the Item
-		itemBody->dead = true;
-		soundController->playSound(Sound::ITEM_COLLECT, 0);
-	}
-	// decrease health on collision with karen
-	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Karen) {
-		//health -= 50;
-	}
-	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Karen) {
-		//health -= 50;
-	}
 	// decrease health on collision with virus
 	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Virus) {
 		auto itemBody = objectB->GetComponent<BodyComponent>();
@@ -83,6 +53,42 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 		// decrease health
 		health -= 25;
 	}
+
+	//player collision with item (collecting)
+	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Item) {
+		auto itemBody = objectB->GetComponent<BodyComponent>();
+
+		// disable collsion
+		contact->SetEnabled(false);
+
+		// increment item count
+		itemNumbers->incrementItemCount(itemBody->getItemType());
+
+		// kill the Item
+		itemBody->dead = true;
+		soundController->playSound(Sound::ITEM_COLLECT, 0);
+	}
+	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Item) {
+		auto itemBody = objectA->GetComponent<BodyComponent>();
+
+		// disable collsion
+		contact->SetEnabled(false);
+
+		// increment item count
+		itemNumbers->incrementItemCount(itemBody->getItemType());
+
+		// kill the Item
+		itemBody->dead = true;
+		soundController->playSound(Sound::ITEM_COLLECT, 0);
+	}
+	// decrease health on collision with karen
+	else if (objectTypeA == ObjectType::Player && objectTypeB == ObjectType::Karen) {
+		//health -= 50;
+	}
+	else if (objectTypeB == ObjectType::Player && objectTypeA == ObjectType::Karen) {
+		//health -= 50;
+	}
+
 
 
 	// ignore collsion for Karen with platforms

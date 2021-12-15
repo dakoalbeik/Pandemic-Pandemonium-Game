@@ -4,6 +4,7 @@
 
 BodyComponent::BodyComponent(std::shared_ptr<GameObject> owner, BodyPresets& presets, PhysicsDevice* pDevice) : Component(owner), pDevice(pDevice) {
 	objectType = presets.objectType;
+	itemType = presets.itemType;
 
 	if (!pDevice->createFixture(owner.get(), presets.physics, presets.positionElements)) {
 		printf("Failed to create fixture!");
@@ -44,6 +45,11 @@ Vector2D BodyComponent::getVelocity() {
 ObjectType BodyComponent::getObjectType() {
 	return objectType;
 }
+
+Item BodyComponent::getItemType() {
+	return itemType;
+}
+
 
 void BodyComponent::setDead() {
 

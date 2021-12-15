@@ -1,6 +1,8 @@
 #include <string>
 #include "GraphicsDevice.h"
 
+#include <iostream>
+
 
 GraphicsDevice::GraphicsDevice(Uint32 width, Uint32 height, bool fullScreen = true) : SCREEN_WIDTH(width), SCREEN_HEIGHT(height)
 {
